@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:insync/view/splash_screen.dart';
+import 'package:insync/view/authorization.dart';
 import 'package:insync/utils/theme_config.dart';
+import 'package:flutter/services.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -13,25 +14,29 @@ class MainApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return MaterialApp(
       title: 'InSync',
       theme: lighttheme,
-      home: MyHomePage(),
+      home: const AppStartsHere(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class AppStartsHere extends StatefulWidget {
+  const AppStartsHere({Key? key}) : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<AppStartsHere> createState() => _AppStartsHereState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _AppStartsHereState extends State<AppStartsHere> {
   @override
   Widget build(BuildContext context) {
-    return SplashScreen();
+    return const Authorization();
   }
 }
