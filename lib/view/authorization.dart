@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:insync/widgets/button.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+class Authorization extends StatefulWidget {
+  const Authorization({Key? key}) : super(key: key);
 
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  _AuthorizationState createState() => _AuthorizationState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _AuthorizationState extends State<Authorization> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,8 +41,8 @@ class _SplashScreenState extends State<SplashScreen> {
                     onPressed: null,
                   ),
                   const SizedBox(height: 20),
-                  OutlinedButton(
-                    onPressed: () {},
+                  TextButton(
+                    onPressed: null,
                     child: const Text(
                       "already a member?",
                       style: TextStyle(fontSize: 18),
@@ -56,6 +56,8 @@ class _SplashScreenState extends State<SplashScreen> {
                       shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
                           (_) {
                         return RoundedRectangleBorder(
+                            side: const BorderSide(
+                                color: Color(0xff1A1A1A), width: 1),
                             borderRadius: BorderRadius.circular(12));
                       }),
                     ),
