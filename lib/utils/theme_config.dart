@@ -208,12 +208,8 @@ ThemeData lighttheme = ThemeData(
     ),
   ),
   primaryColor: const Color(0xffFD4C62),
-  primaryColorLight: const Color(0xff00d2ff),
-  primaryColorDark: const Color(0xff0052ff),
-  scaffoldBackgroundColor: const Color(0xffF7FAFF),
   fontFamily: 'General Sans',
   brightness: Brightness.light,
-  backgroundColor: const Color(0xff393E46),
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
     elevation: 0,
     backgroundColor: Color(0xff2dadc2),

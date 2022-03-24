@@ -1,43 +1,32 @@
-// import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
-// class Button extends StatefulWidget {
-//   const Button({
-//     @required this.myText,
-//     @required this.myColor,
-//     this.routeName,
-//     this.onPressed,
-//     Key key,
-//   }) : super(key: key);
-//   final String myText;
-//   final Color myColor;
-//   final String routeName;
-//   final Function onPressed;
+class PrimaryButton extends StatelessWidget {
+  const PrimaryButton(
+      {Key? key, required this.buttonTitle, required this.onPressed})
+      : super(key: key);
+  final String buttonTitle;
+  final void Function()? onPressed;
 
-//   @override
-//   _ButtonState createState() => _ButtonState();
-// }
-
-// class _ButtonState extends State<Button> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return RaisedButton(
-//       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
-//       textColor: Colors.white,
-//       elevation: 0,
-//       color: widget.myColor,
-//       child: Text(
-//         widget.myText,
-//         style: TextStyle(
-//             color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600),
-//       ),
-//       onPressed: widget.onPressed ??
-//           () {
-//             print("going to " + widget.routeName);
-//             Navigator.pushNamed(context, widget.routeName);
-//           },
-//       shape: new RoundedRectangleBorder(
-//         borderRadius: new BorderRadius.circular(16.0),
-//       ),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      child: Text(
+        buttonTitle,
+        style: const TextStyle(fontSize: 18),
+      ),
+      style: ButtonStyle(
+        foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+        backgroundColor:
+            MaterialStateProperty.all<Color>(const Color(0xffFD4C62)),
+        padding: MaterialStateProperty.all<EdgeInsetsGeometry?>(
+            const EdgeInsets.symmetric(vertical: 14.0, horizontal: 8)),
+        shape: MaterialStateProperty.resolveWith<OutlinedBorder>((_) {
+          return RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12));
+        }),
+        elevation: MaterialStateProperty.all<double>(0),
+      ),
+    );
+  }
+}
