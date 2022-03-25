@@ -177,22 +177,21 @@ ThemeData lighttheme = ThemeData(
     elevation: 10,
   ),
   inputDecorationTheme: const InputDecorationTheme(
-    hintStyle: TextStyle(
-      color: Color(0xffCBC6CB),
-    ),
+    labelStyle: TextStyle(color: Color(0xff1A1A1A)),
+    helperStyle: TextStyle(color: Color(0xff656E85)),
+    hintStyle: TextStyle(color: Color(0xff656E85)),
     filled: true,
     fillColor: Colors.white,
-    // fillColor: Color(0xffF3F0F4),
     hoverColor: Colors.white,
-    alignLabelWithHint: true,
+    floatingLabelBehavior: FloatingLabelBehavior.never,
     border: InputBorder.none,
     enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(50.0)),
-      borderSide: BorderSide(color: Color(0xffF3F0F4)),
+      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+      borderSide: BorderSide(color: Color(0xffE2E4E8)),
     ),
     focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(50.0)),
-      borderSide: BorderSide(color: Color(0xffF3F0F4)),
+      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+      borderSide: BorderSide(color: Color(0xff2561ED)),
     ),
   ),
   bottomAppBarTheme: const BottomAppBarTheme(
@@ -200,7 +199,7 @@ ThemeData lighttheme = ThemeData(
     elevation: 0,
   ),
   appBarTheme: const AppBarTheme(
-    color: Color(0xffF7F7FF),
+    color: Color.fromARGB(255, 255, 255, 255),
     elevation: 0,
     centerTitle: true,
     iconTheme: IconThemeData(
@@ -209,7 +208,6 @@ ThemeData lighttheme = ThemeData(
   ),
   primaryColor: const Color(0xffFD4C62),
   fontFamily: 'General Sans',
-  brightness: Brightness.light,
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
     elevation: 0,
     backgroundColor: Color(0xff2dadc2),

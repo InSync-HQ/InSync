@@ -80,8 +80,10 @@ flutter:
         - asset: fonts/GeneralSans-Regular.otf
         - asset: fonts/GeneralSans-Bold.otf
           weight: 700
-        - asset: fonts/GeneralSans-Medium.otf
+        - asset: fonts/GeneralSans-Semibold.otf
           weight: 600
+        - asset: fonts/GeneralSans-Medium.otf
+          weight: 500
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

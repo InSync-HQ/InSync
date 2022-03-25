@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
-  runApp(MainApp());
+  runApp(const MainApp());
 }
 
 class MainApp extends StatelessWidget {
