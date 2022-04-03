@@ -181,6 +181,7 @@ ThemeData lighttheme = ThemeData(
     helperStyle: TextStyle(color: Color(0xff656E85)),
     hintStyle: TextStyle(color: Color(0xff656E85)),
     filled: true,
+    isDense: true,
     fillColor: Colors.white,
     hoverColor: Colors.white,
     floatingLabelBehavior: FloatingLabelBehavior.never,

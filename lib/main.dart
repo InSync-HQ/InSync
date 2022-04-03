@@ -1,42 +1,64 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:insync/view/authorization.dart';
 import 'package:insync/utils/theme_config.dart';
-import 'package:flutter/services.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
+import 'package:insync/view/splash.dart';
+import 'dart:async';
 
 void main() {
-  runApp(const MainApp());
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  runApp(const MyApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
     return MaterialApp(
       title: 'InSync',
       theme: lighttheme,
-      home: const AppStartsHere(),
-      debugShowCheckedModeBanner: false,
+      home: const MyHomePage(),
     );
   }
 }
 
-class AppStartsHere extends StatefulWidget {
-  const AppStartsHere({Key? key}) : super(key: key);
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
-  State<AppStartsHere> createState() => _AppStartsHereState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _AppStartsHereState extends State<AppStartsHere> {
+class _MyHomePageState extends State<MyHomePage> {
+  startTimeout() {
+    return Timer(const Duration(milliseconds: 2200), handleTimeout);
+  }
+
+  void handleTimeout() {
+    changeScreen();
+  }
+
+  changeScreen() async {
+    Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (context) => const Authorization()));
+  }
+
+  @override
+  void initState() {
+    startTimeout();
+    super.initState();
+    initialization();
+  }
+
+  void initialization() async {
+    setState(() {});
+    FlutterNativeSplash.remove();
+    startTimeout();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Authorization();
+    return const Splash();
   }
 }
