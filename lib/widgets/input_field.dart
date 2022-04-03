@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
 class InputField extends StatefulWidget {
   const InputField({
@@ -18,7 +19,7 @@ class InputField extends StatefulWidget {
 }
 
 class _InputFieldState extends State<InputField> {
-  bool obs=false;
+  bool obs = false;
   @override
   void initState() {
     super.initState();
@@ -57,9 +58,10 @@ class _InputFieldState extends State<InputField> {
                           obs = !obs;
                         });
                       },
-                      icon: Icon(obs
-                          ? Icons.visibility_outlined
-                          : Icons.visibility_off_outlined),
+                      icon: Icon(
+                        obs ? FeatherIcons.eye : FeatherIcons.eyeOff,
+                        size: 24,
+                      ),
                     ),
             ),
           ),
