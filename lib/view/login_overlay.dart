@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:insync/widgets/button.dart';
 import 'package:insync/widgets/input_field.dart';
 
-class CreateAccountOverlay extends StatelessWidget {
-  const CreateAccountOverlay({
+class LoginOverlay extends StatelessWidget {
+  const LoginOverlay({
     Key? key,
   }) : super(key: key);
 
@@ -13,8 +13,8 @@ class CreateAccountOverlay extends StatelessWidget {
       behavior: HitTestBehavior.opaque,
       onTap: () => Navigator.of(context).pop(),
       child: DraggableScrollableSheet(
-        initialChildSize: 0.9,
-        minChildSize: 0.65,
+        initialChildSize: 0.75,
+        minChildSize: 0.4,
         builder: (_, controller) => Container(
           clipBehavior: Clip.hardEdge,
           decoration: const BoxDecoration(
@@ -36,7 +36,7 @@ class CreateAccountOverlay extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text(
-                      "Create an account",
+                      "Log in",
                       style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.w700,
@@ -52,11 +52,6 @@ class CreateAccountOverlay extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 32),
-              const InputField(
-                label: "Full Name",
-                placeholder: "Jhon Doe",
-                keyboard: TextInputType.name,
-              ),
               const InputField(
                 label: "E-mail",
                 placeholder: "someone@example.com",
@@ -92,7 +87,7 @@ class CreateAccountOverlay extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               PrimaryButton(
-                buttonTitle: "Continue with google",
+                buttonTitle: "Log in with google",
                 onPressed: () {},
                 imageLeft: const Image(
                   image: AssetImage('assets/google.png'),
@@ -103,7 +98,7 @@ class CreateAccountOverlay extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               PrimaryButton(
-                buttonTitle: "Continue with facebook",
+                buttonTitle: "Log in with facebook",
                 onPressed: () {},
                 bgColor: Colors.white,
                 imageLeft:
@@ -113,18 +108,10 @@ class CreateAccountOverlay extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               PrimaryButton(
-                buttonTitle: "Already have an account? log in",
+                buttonTitle: "New here? create an account",
                 onPressed: () {},
                 bgColor: Colors.white,
                 textColor: const Color(0xffBD3A4A),
-              ),
-              const SizedBox(height: 4),
-              const Text(
-                "by signing up, you agree to our privacy policy and T&C",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 11,
-                ),
               ),
               const SizedBox(height: 16),
             ],

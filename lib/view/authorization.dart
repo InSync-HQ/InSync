@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:insync/view/create_account_overlay.dart';
+import 'package:insync/view/login_overlay.dart';
 import 'package:insync/widgets/button.dart';
 
 class Authorization extends StatefulWidget {
@@ -68,11 +69,25 @@ class _AuthorizationState extends State<Authorization> {
                   const SizedBox(height: 20),
                   PrimaryButton(
                     buttonTitle: "already a member?",
-                    onPressed: () {},
+                    onPressed: () {
+                      showModalBottomSheet<void>(
+                        context: context,
+                        isScrollControlled: true,
+                        backgroundColor: Colors.transparent,
+                        builder: (BuildContext context) {
+                          return const LoginOverlay();
+                        },
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(24),
+                              topRight: Radius.circular(24)),
+                        ),
+                      );
+                    },
                     bgColor: Colors.white,
                     textColor: Colors.black,
                     border:
-                        const BorderSide(color: Color(0xff1A1A1A), width: 1),
+                        const BorderSide(color: Color(0xff1A1A1A), width: 2),
                   ),
                 ],
               ),
