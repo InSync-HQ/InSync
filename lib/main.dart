@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:insync/view/app_structure.dart';
 import 'package:insync/view/authorization.dart';
 import 'package:insync/utils/theme_config.dart';
 import 'package:insync/view/splash.dart';
@@ -16,21 +17,26 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // routes
+      routes: {
+        '/authorization': (context) => const Authorization(),
+        '/mainapp': (context) => const MainApp(),
+      },
       title: 'InSync',
       theme: lighttheme,
-      home: const MyHomePage(),
+      home: const InSync(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class InSync extends StatefulWidget {
+  const InSync({Key? key}) : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<InSync> createState() => _InSyncState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _InSyncState extends State<InSync> {
   startTimeout() {
     return Timer(const Duration(milliseconds: 2200), handleTimeout);
   }
@@ -40,8 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   changeScreen() async {
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => const Authorization()));
+    Navigator.pushNamed(context, '/authorization');
   }
 
   @override
