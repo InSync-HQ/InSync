@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:insync/view/create_account_overlay.dart';
 import 'package:insync/widgets/button.dart';
+import 'package:insync/widgets/dividing_or.dart';
 import 'package:insync/widgets/input_field.dart';
 
 class LoginOverlay extends StatelessWidget {
@@ -69,23 +70,7 @@ class LoginOverlay extends StatelessWidget {
                 onPressed: () {},
               ),
               const SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                // ignore: prefer_const_literals_to_create_immutables
-                children: [
-                  const Divider(
-                    color: Colors.grey,
-                    height: 1,
-                    thickness: 1,
-                  ),
-                  const Text("or"),
-                  Container(
-                    decoration: const BoxDecoration(
-                      color: Color(0xff00baff),
-                    ),
-                  ),
-                ],
-              ),
+              const DividingOr(),
               const SizedBox(height: 8),
               PrimaryButton(
                 buttonTitle: "Log in with google",
