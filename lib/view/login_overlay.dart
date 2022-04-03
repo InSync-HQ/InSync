@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:insync/view/create_account_overlay.dart';
 import 'package:insync/widgets/button.dart';
 import 'package:insync/widgets/input_field.dart';
 
@@ -109,7 +110,22 @@ class LoginOverlay extends StatelessWidget {
               const SizedBox(height: 8),
               PrimaryButton(
                 buttonTitle: "New here? create an account",
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context);
+                  showModalBottomSheet<void>(
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    builder: (BuildContext context) {
+                      return const CreateAccountOverlay();
+                    },
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(24),
+                          topRight: Radius.circular(24)),
+                    ),
+                  );
+                },
                 bgColor: Colors.white,
                 textColor: const Color(0xffBD3A4A),
               ),
