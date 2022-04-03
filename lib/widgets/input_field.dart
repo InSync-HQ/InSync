@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class InputField extends StatelessWidget {
+class InputField extends StatefulWidget {
   const InputField({
     Key? key,
     required this.label,
@@ -12,6 +12,21 @@ class InputField extends StatelessWidget {
   final String? placeholder;
   final bool password;
   final TextInputType? keyboard;
+
+  @override
+  State<InputField> createState() => _InputFieldState();
+}
+
+class _InputFieldState extends State<InputField> {
+  bool obs=false;
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      obs = widget.password;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,7 +36,7 @@ class InputField extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            label,
+            widget.label,
             style: const TextStyle(
               color: Color(0xff1A1A1A),
               fontSize: 13,
@@ -30,10 +45,22 @@ class InputField extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           TextFormField(
-            obscureText: password,
-            keyboardType: keyboard,
+            obscureText: obs,
+            keyboardType: widget.keyboard,
             decoration: InputDecoration(
-              hintText: placeholder,
+              hintText: widget.placeholder,
+              suffixIcon: !widget.password
+                  ? null
+                  : IconButton(
+                      onPressed: () {
+                        setState(() {
+                          obs = !obs;
+                        });
+                      },
+                      icon: Icon(obs
+                          ? Icons.visibility_outlined
+                          : Icons.visibility_off_outlined),
+                    ),
             ),
           ),
         ],
