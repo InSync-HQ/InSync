@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:insync/utils/constants.dart';
 import 'package:insync/view/create_community_overlay.dart';
 import 'package:insync/widgets/bottom_nav_bar.dart';
 import 'package:insync/widgets/button.dart';
@@ -164,8 +165,22 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Profile"),
+    return Scaffold(
+      appBar: AppBar(title: const Text("Profile")),
+      body: Column(
+        children: [
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            child: PrimaryButton(
+                buttonTitle: "Log out",
+                onPressed: () {
+                  Constants.logoutPref();
+                  Navigator.pushNamed(context, '/authorization');
+                }),
+          ),
+        ],
+      ),
     );
   }
 }

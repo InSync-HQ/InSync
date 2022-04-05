@@ -32,8 +32,7 @@ class PrimaryButton extends StatelessWidget {
             child: imageLeft,
           ),
           Container(
-            padding:
-                iconLeft == null ? null : const EdgeInsets.only(right: 12),
+            padding: iconLeft == null ? null : const EdgeInsets.only(right: 12),
             child: iconLeft,
           ),
           Text(

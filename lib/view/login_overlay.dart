@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:insync/utils/constants.dart';
 import 'package:insync/view/create_account_overlay.dart';
 import 'package:insync/widgets/button.dart';
 import 'package:insync/widgets/dividing_or.dart';
@@ -68,6 +69,8 @@ class LoginOverlay extends StatelessWidget {
               PrimaryButton(
                 buttonTitle: "Continue",
                 onPressed: () {
+                  Constants.loginPref();
+                  Constants.retrieveAuthPref();
                   Navigator.pushNamed(context, '/mainapp');
                 },
               ),

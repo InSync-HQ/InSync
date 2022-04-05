@@ -66,7 +66,6 @@ class CreateCommunityOverlay extends StatelessWidget {
                 onPressed: () {},
               ),
               const SizedBox(height: 8),
-              
               const SizedBox(height: 16),
             ],
           ),

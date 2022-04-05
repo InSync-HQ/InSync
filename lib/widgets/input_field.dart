@@ -9,12 +9,14 @@ class InputField extends StatefulWidget {
     this.password = false,
     this.keyboard,
     this.search = false,
+    this.controller,
   }) : super(key: key);
   final String label;
   final String? placeholder;
   final bool password;
   final bool search;
   final TextInputType? keyboard;
+  final TextEditingController? controller;
 
   @override
   State<InputField> createState() => _InputFieldState();
@@ -53,6 +55,7 @@ class _InputFieldState extends State<InputField> {
           const SizedBox(height: 8),
           TextFormField(
             obscureText: obs,
+            controller: widget.controller,
             keyboardType: widget.keyboard,
             decoration: InputDecoration(
               prefixIcon:
