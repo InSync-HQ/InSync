@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:insync/utils/constants.dart';
 // import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:insync/view/app_structure.dart';
 import 'package:insync/view/authorization.dart';
@@ -46,7 +47,12 @@ class _InSyncState extends State<InSync> {
   }
 
   changeScreen() async {
-    Navigator.pushNamed(context, '/authorization');
+    bool? auth = await Constants.retrieveAuthPref();
+    if (auth == true) {
+      Navigator.pushNamed(context, '/mainapp');
+    } else {
+      Navigator.pushNamed(context, '/authorization');
+    }
   }
 
   @override
