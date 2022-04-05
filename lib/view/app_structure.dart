@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:insync/widgets/bottom_nav_bar.dart';
+import 'package:insync/widgets/button.dart';
+import 'package:insync/widgets/input_field.dart';
 /*
   this has the bottom navigation bar of the app
 */
@@ -65,8 +68,51 @@ class Community extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Community"),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          "Communities",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        automaticallyImplyLeading: false,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+        child: Column(
+          // ignore: prefer_const_literals_to_create_immutables
+          children: [
+            const InputField(
+              label: "Search for a community",
+              search: true,
+              placeholder: "Search for a community",
+            ),
+            Flex(
+              direction: Axis.horizontal,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              // ignore: prefer_const_literals_to_create_immutables
+              children: [
+                const PrimaryButton(
+                  buttonTitle: "Create",
+                  onPressed: null,
+                  bgColor: Color(0xffFFD4D4),
+                  textColor: Color(0xffBD3A4A),
+                  iconLeft: Icon(FeatherIcons.plusCircle),
+                ),
+                const PrimaryButton(
+                  buttonTitle: "Discover",
+                  onPressed: null,
+                  bgColor: Color(0xffD3E5FE),
+                  textColor: Color(0xff1B4ACB),
+                  iconLeft: Icon(FeatherIcons.compass),
+                ),
+              ],
+            ),
+            const Spacer(),
+            const Image(image: AssetImage("assets/nocommunities.png")),
+            const Spacer(),
+          ],
+        ),
+      ),
     );
   }
 }

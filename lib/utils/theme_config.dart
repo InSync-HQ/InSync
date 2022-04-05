@@ -200,9 +200,9 @@ ThemeData lighttheme = ThemeData(
     elevation: 0,
   ),
   appBarTheme: const AppBarTheme(
-    color: Color.fromARGB(255, 255, 255, 255),
+    foregroundColor: Color(0xFF1A1A1A),
+    backgroundColor: Colors.white,
     elevation: 0,
-    centerTitle: true,
     iconTheme: IconThemeData(
       color: Colors.black,
     ),
