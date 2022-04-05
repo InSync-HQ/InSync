@@ -6,6 +6,7 @@ class PrimaryButton extends StatelessWidget {
     required this.buttonTitle,
     required this.onPressed,
     this.imageLeft,
+    this.iconLeft,
     this.bgColor = const Color(0xffFD4C62),
     this.textColor = Colors.white,
     this.border = BorderSide.none,
@@ -13,6 +14,7 @@ class PrimaryButton extends StatelessWidget {
   final String buttonTitle;
   final void Function()? onPressed;
   final Image? imageLeft;
+  final Icon? iconLeft;
   final Color bgColor;
   final Color textColor;
   final BorderSide border;
@@ -28,6 +30,11 @@ class PrimaryButton extends StatelessWidget {
             padding:
                 imageLeft == null ? null : const EdgeInsets.only(right: 12),
             child: imageLeft,
+          ),
+          Container(
+            padding:
+                iconLeft == null ? null : const EdgeInsets.only(right: 12),
+            child: iconLeft,
           ),
           Text(
             buttonTitle,
