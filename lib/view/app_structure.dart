@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:insync/view/create_community_overlay.dart';
 import 'package:insync/widgets/bottom_nav_bar.dart';
 import 'package:insync/widgets/button.dart';
 import 'package:insync/widgets/input_field.dart';
@@ -63,9 +64,16 @@ class Home extends StatelessWidget {
   }
 }
 
-class Community extends StatelessWidget {
-  const Community({Key? key}) : super(key: key);
+class Community extends StatefulWidget {
+  const Community({
+    Key? key,
+  }) : super(key: key);
 
+  @override
+  State<Community> createState() => _CommunityState();
+}
+
+class _CommunityState extends State<Community> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,6 +87,7 @@ class Community extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           // ignore: prefer_const_literals_to_create_immutables
           children: [
             const InputField(
@@ -86,29 +95,62 @@ class Community extends StatelessWidget {
               search: true,
               placeholder: "Search for a community",
             ),
-            Flex(
-              direction: Axis.horizontal,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              // ignore: prefer_const_literals_to_create_immutables
+            Row(
               children: [
-                const PrimaryButton(
-                  buttonTitle: "Create",
-                  onPressed: null,
-                  bgColor: Color(0xffFFD4D4),
-                  textColor: Color(0xffBD3A4A),
-                  iconLeft: Icon(FeatherIcons.plusCircle),
+                Expanded(
+                  child: PrimaryButton(
+                    buttonTitle: "Create",
+                    onPressed: () {
+                      showModalBottomSheet<void>(
+                        context: context,
+                        isScrollControlled: true,
+                        backgroundColor: Colors.transparent,
+                        builder: (BuildContext context) {
+                          return const CreateCommunityOverlay();
+                        },
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(24),
+                              topRight: Radius.circular(24)),
+                        ),
+                      );
+                    },
+                    bgColor: const Color(0xffFFD4D4),
+                    textColor: const Color(0xffBD3A4A),
+                    iconLeft: const Icon(FeatherIcons.plusCircle),
+                  ),
                 ),
-                const PrimaryButton(
-                  buttonTitle: "Discover",
-                  onPressed: null,
-                  bgColor: Color(0xffD3E5FE),
-                  textColor: Color(0xff1B4ACB),
-                  iconLeft: Icon(FeatherIcons.compass),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: PrimaryButton(
+                    buttonTitle: "Discover",
+                    onPressed: () {
+                      Navigator.of(context).pushNamed("/mainapp");
+                    },
+                    bgColor: const Color(0xffD3E5FE),
+                    textColor: const Color(0xff1B4ACB),
+                    iconLeft: const Icon(FeatherIcons.compass),
+                  ),
                 ),
               ],
             ),
             const Spacer(),
-            const Image(image: AssetImage("assets/nocommunities.png")),
+            Column(
+              children: const [
+                Image(image: AssetImage("assets/nocommunities.png")),
+                Text(
+                  "No communities found",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  "Join communities or simply create one",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Color(0xff5C657D),
+                  ),
+                ),
+              ],
+            ),
             const Spacer(),
           ],
         ),
