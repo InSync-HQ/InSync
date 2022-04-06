@@ -10,6 +10,7 @@ class InputField extends StatefulWidget {
     this.keyboard,
     this.search = false,
     this.controller,
+    this.textArea = false,
   }) : super(key: key);
   final String label;
   final String? placeholder;
@@ -17,6 +18,7 @@ class InputField extends StatefulWidget {
   final bool search;
   final TextInputType? keyboard;
   final TextEditingController? controller;
+  final bool textArea;
 
   @override
   State<InputField> createState() => _InputFieldState();
@@ -54,6 +56,7 @@ class _InputFieldState extends State<InputField> {
           ),
           const SizedBox(height: 8),
           TextFormField(
+            maxLines: widget.textArea ? 3 : 1,
             obscureText: obs,
             controller: widget.controller,
             keyboardType: widget.keyboard,
