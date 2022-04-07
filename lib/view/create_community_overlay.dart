@@ -39,10 +39,6 @@ class _CreateCommunityOverlayState extends State<CreateCommunityOverlay> {
       .map((intrest) => MultiSelectItem<Intrest>(intrest, intrest.name))
       .toList();
   List<Intrest> _selectedIntrests = [];
-  // List<Intrest> _selectedAnimals2 = [];
-  // List<Intrest> _selectedAnimals3 = [];
-  //List<Animal> _selectedAnimals4 = [];
-  // List<Intrest> _selectedAnimals5 = [];
   // final _multiSelectKey = GlobalKey<FormFieldState>();
 
   @override
@@ -153,7 +149,8 @@ class _CreateCommunityOverlayState extends State<CreateCommunityOverlay> {
                   style: TextStyle(color: Colors.grey.shade600),
                 ),
                 barrierColor: Colors.black.withOpacity(0.3),
-                selectedItemsTextStyle: TextStyle(fontWeight: FontWeight.bold),
+                selectedItemsTextStyle:
+                    const TextStyle(fontWeight: FontWeight.bold),
                 title: const Text("Intrests"),
                 selectedColor: Theme.of(context).primaryColor,
                 decoration: BoxDecoration(
