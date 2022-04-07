@@ -3,6 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:insync/widgets/button.dart';
 import 'package:insync/widgets/input_field.dart';
+import 'package:multi_select_flutter/multi_select_flutter.dart';
+
+class Intrest {
+  final int? id;
+  final String name;
+
+  Intrest({
+    this.id,
+    this.name = "Hayat",
+  });
+}
 
 class CreateCommunityOverlay extends StatefulWidget {
   const CreateCommunityOverlay({
@@ -14,6 +25,28 @@ class CreateCommunityOverlay extends StatefulWidget {
 }
 
 class _CreateCommunityOverlayState extends State<CreateCommunityOverlay> {
+  // ignore: prefer_final_fields
+  static List<Intrest> _intrests = [
+    Intrest(id: 1, name: "👆 Politics"),
+    Intrest(id: 2, name: "🚀 Startups"),
+    Intrest(id: 3, name: "💰 Crypto"),
+    Intrest(id: 4, name: "💳 Fin-tech"),
+    Intrest(id: 5, name: "🎽 Sports"),
+    Intrest(id: 6, name: "🔫 Crime"),
+    Intrest(id: 7, name: "🥗 Food"),
+  ];
+  final _items = _intrests
+      .map((intrest) => MultiSelectItem<Intrest>(intrest, intrest.name))
+      .toList();
+  List<Intrest> _selectedIntrests = [];
+  // final _multiSelectKey = GlobalKey<FormFieldState>();
+
+  @override
+  void initState() {
+    _selectedIntrests = _intrests;
+    super.initState();
+  }
+
   bool isSwitched = false;
   String visibilityVal = 'Private';
   void toggleSwitch(bool value) {
@@ -89,9 +122,70 @@ class _CreateCommunityOverlayState extends State<CreateCommunityOverlay> {
                 placeholder: "Your community's name",
                 keyboard: TextInputType.name,
               ),
-              const InputField(
-                label: "Intrest topics",
-                keyboard: TextInputType.name,
+              const Text(
+                "Intrest topics",
+                style: TextStyle(
+                  color: Color(0xff1A1A1A),
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const SizedBox(height: 8),
+              MultiSelectDialogField(
+                items: _items,
+                searchable: true,
+                separateSelectedItems: true,
+                buttonIcon: Icon(
+                  FeatherIcons.chevronDown,
+                  color: Colors.grey.shade600,
+                ),
+                searchIcon: const Icon(FeatherIcons.search),
+                confirmText: Text(
+                  "Select",
+                  style: TextStyle(color: Theme.of(context).primaryColor),
+                ),
+                cancelText: Text(
+                  "Cancel",
+                  style: TextStyle(color: Colors.grey.shade600),
+                ),
+                barrierColor: Colors.black.withOpacity(0.3),
+                selectedItemsTextStyle:
+                    const TextStyle(fontWeight: FontWeight.bold),
+                title: const Text("Intrests"),
+                selectedColor: Theme.of(context).primaryColor,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: const BorderRadius.all(Radius.circular(8)),
+                  border: Border.all(
+                    color: Colors.grey.shade300,
+                    width: 1,
+                  ),
+                ),
+                buttonText: Text(
+                  "select some intrests",
+                  style: TextStyle(
+                    color: Colors.grey.shade700,
+                    fontSize: 16,
+                  ),
+                ),
+                onConfirm: (List<Intrest> results) {
+                  _selectedIntrests = results;
+                },
+                chipDisplay: MultiSelectChipDisplay(
+                  chipColor: Theme.of(context).primaryColor.withOpacity(0.1),
+                  textStyle: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  items: _selectedIntrests
+                      .map((e) => MultiSelectItem(e, e.toString()))
+                      .toList(),
+                  onTap: (value) {
+                    setState(() {
+                      _selectedIntrests.remove(value);
+                    });
+                  },
+                ),
               ),
               const InputField(
                 label: "Description",
