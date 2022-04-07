@@ -75,9 +75,9 @@ class _CreateCommunityOverlayState extends State<CreateCommunityOverlay> {
         minChildSize: 0.4,
         builder: (_, controller) => Container(
           clipBehavior: Clip.hardEdge,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
+          decoration: BoxDecoration(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
             ),
@@ -113,7 +113,7 @@ class _CreateCommunityOverlayState extends State<CreateCommunityOverlay> {
                 iconLeft: const Icon(FeatherIcons.uploadCloud),
                 onPressed: () {},
                 textColor: const Color(0xff2561ED),
-                bgColor: Colors.white,
+                bgColor: Theme.of(context).scaffoldBackgroundColor,
                 border: const BorderSide(color: Color(0xff2561ED), width: 2),
               ),
               const SizedBox(height: 8),
@@ -122,10 +122,11 @@ class _CreateCommunityOverlayState extends State<CreateCommunityOverlay> {
                 placeholder: "Your community's name",
                 keyboard: TextInputType.name,
               ),
-              const Text(
+              Text(
                 "Intrest topics",
                 style: TextStyle(
-                  color: Color(0xff1A1A1A),
+                  color:
+                      Theme.of(context).inputDecorationTheme.labelStyle?.color,
                   fontSize: 13,
                   fontWeight: FontWeight.w500,
                 ),
@@ -154,10 +155,10 @@ class _CreateCommunityOverlayState extends State<CreateCommunityOverlay> {
                 title: const Text("Intrests"),
                 selectedColor: Theme.of(context).primaryColor,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).inputDecorationTheme.fillColor,
                   borderRadius: const BorderRadius.all(Radius.circular(8)),
                   border: Border.all(
-                    color: Colors.grey.shade300,
+                    color: Colors.grey.shade400,
                     width: 1,
                   ),
                 ),
@@ -218,7 +219,7 @@ class _CreateCommunityOverlayState extends State<CreateCommunityOverlay> {
                   CupertinoSwitch(
                     value: isSwitched,
                     onChanged: toggleSwitch,
-                    activeColor: Colors.black,
+                    activeColor: Theme.of(context).primaryColor,
                   )
                 ],
               ),

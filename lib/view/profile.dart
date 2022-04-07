@@ -43,17 +43,18 @@ class _ProfileState extends State<Profile> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 16),
-          const ListTile(
-            leading: Image(
+          ListTile(
+            leading: const Image(
               image: AssetImage("assets/avatar.png"),
             ),
-            title: Text("Welcome"),
+            title: const Text("Welcome"),
             subtitle: Text(
               "Hayat Tamboli",
               style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black),
+                fontSize: 24,
+                fontWeight: FontWeight.w600,
+                color: Theme.of(context).listTileTheme.iconColor,
+              ),
             ),
           ),
           const SizedBox(height: 36),
@@ -67,15 +68,16 @@ class _ProfileState extends State<Profile> {
           ),
           ListTile(
             horizontalTitleGap: 0,
-            leading: const Icon(
+            leading: Icon(
               FeatherIcons.moon,
-              color: Colors.black,
+              color: Theme.of(context).listTileTheme.iconColor,
               size: 24,
             ),
             title: const Text(
               "Dark Mode",
               style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
             ),
+            subtitle: const Text("system prefrence"),
             trailing: CupertinoSwitch(
               value: isSwitched,
               onChanged: null,
@@ -133,7 +135,7 @@ class ProfileTile extends StatelessWidget {
       horizontalTitleGap: 0,
       leading: Icon(
         leadIcon,
-        color: Colors.black,
+        color: Theme.of(context).listTileTheme.iconColor,
         size: 24,
       ),
       title: Text(

@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
       },
       title: 'InSync',
       theme: lighttheme,
+      darkTheme: darktheme,
       home: const InSync(),
     );
   }

@@ -19,9 +19,9 @@ class CreateAccountOverlay extends StatelessWidget {
         minChildSize: 0.65,
         builder: (_, controller) => Container(
           clipBehavior: Clip.hardEdge,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
+          decoration: BoxDecoration(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
             ),

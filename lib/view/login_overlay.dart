@@ -20,9 +20,9 @@ class LoginOverlay extends StatelessWidget {
         minChildSize: 0.4,
         builder: (_, controller) => Container(
           clipBehavior: Clip.hardEdge,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
+          decoration: BoxDecoration(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
             ),
@@ -30,8 +30,6 @@ class LoginOverlay extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
           child: ListView(
             controller: controller,
-            // mainAxisSize: MainAxisSize.min,
-            // crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 16, 0, 4),
