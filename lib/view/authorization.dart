@@ -16,7 +16,7 @@ class _AuthorizationState extends State<Authorization> {
     return Scaffold(
       body: Builder(builder: (context) {
         return Container(
-          color: const Color(0xffffffff),
+          // color: const Color(0xffffffff),
           padding: const EdgeInsets.fromLTRB(16, 32, 16, 16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -15,8 +15,8 @@ class PrimaryButton extends StatelessWidget {
   final void Function()? onPressed;
   final Image? imageLeft;
   final Icon? iconLeft;
-  final Color bgColor;
-  final Color textColor;
+  final Color? bgColor;
+  final Color? textColor;
   final BorderSide border;
 
   @override
@@ -42,8 +42,8 @@ class PrimaryButton extends StatelessWidget {
         ],
       ),
       style: ButtonStyle(
-        foregroundColor: MaterialStateProperty.all<Color>(textColor),
-        backgroundColor: MaterialStateProperty.all<Color>(bgColor),
+        foregroundColor: MaterialStateProperty.all<Color?>(textColor),
+        backgroundColor: MaterialStateProperty.all<Color?>(bgColor),
         padding: MaterialStateProperty.all<EdgeInsetsGeometry?>(
             const EdgeInsets.symmetric(vertical: 14.0, horizontal: 8)),
         shape: MaterialStateProperty.resolveWith<OutlinedBorder>((_) {

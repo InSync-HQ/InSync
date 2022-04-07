@@ -46,8 +46,11 @@ class _InputFieldState extends State<InputField> {
             child: !widget.search
                 ? Text(
                     widget.label,
-                    style: const TextStyle(
-                      color: Color(0xff1A1A1A),
+                    style: TextStyle(
+                      color: Theme.of(context)
+                          .inputDecorationTheme
+                          .labelStyle
+                          ?.color,
                       fontSize: 13,
                       fontWeight: FontWeight.w500,
                     ),
