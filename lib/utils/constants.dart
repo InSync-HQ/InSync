@@ -22,7 +22,6 @@ class Constants {
   static Future<bool?> retrieveAuthPref() async {
     late SharedPreferences prefs;
     prefs = await SharedPreferences.getInstance();
-    print(prefs.getBool('auth'));
     return prefs.getBool('auth');
   }
 

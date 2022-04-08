@@ -19,13 +19,11 @@ class _ProfileState extends State<Profile> {
         isSwitched = true;
         visibilityVal = 'Public';
       });
-      print('Switch Button is ON');
     } else {
       setState(() {
         isSwitched = false;
         visibilityVal = 'Private';
       });
-      print('Switch Button is OFF');
     }
   }
 
@@ -58,9 +56,12 @@ class _ProfileState extends State<Profile> {
             ),
           ),
           const SizedBox(height: 36),
-          const ProfileTile(
+          ProfileTile(
             title: "Edit Profile",
             leadIcon: FeatherIcons.user,
+            onTap: () {
+              Navigator.of(context).pushNamed("/editprofile");
+            },
           ),
           const ProfileTile(
             title: "Change Intrests",

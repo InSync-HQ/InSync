@@ -55,13 +55,11 @@ class _CreateCommunityOverlayState extends State<CreateCommunityOverlay> {
         isSwitched = true;
         visibilityVal = 'Public';
       });
-      print('Switch Button is ON');
     } else {
       setState(() {
         isSwitched = false;
         visibilityVal = 'Private';
       });
-      print('Switch Button is OFF');
     }
   }
 

@@ -4,6 +4,7 @@ import 'package:insync/utils/constants.dart';
 import 'package:insync/view/app_structure.dart';
 import 'package:insync/view/authorization.dart';
 import 'package:insync/utils/theme_config.dart';
+import 'package:insync/view/edit_profile.dart';
 import 'package:insync/view/splash.dart';
 import 'dart:async';
 
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/authorization': (context) => const Authorization(),
         '/mainapp': (context) => const MainApp(),
+        '/editprofile': (context) => const EditProfile(),
       },
       title: 'InSync',
       theme: lighttheme,
