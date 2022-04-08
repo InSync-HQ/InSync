@@ -4,6 +4,7 @@ import 'package:insync/utils/constants.dart';
 import 'package:insync/view/app_structure.dart';
 import 'package:insync/view/authorization.dart';
 import 'package:insync/utils/theme_config.dart';
+import 'package:insync/view/edit_profile.dart';
 import 'package:insync/view/splash.dart';
 import 'dart:async';
 
@@ -13,8 +14,49 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  int? theme;
+  ThemeMode thememode = ThemeMode.system;
+
+  @override
+  void initState() {
+    initialization();
+    super.initState();
+  }
+
+  void initialization() async {
+    if (await Constants.retrievethemePref() == null) {
+      print("null call");
+      theme = 1;
+    } else {
+      theme = await Constants.retrievethemePref();
+    }
+    print("Theme number is: ");
+    print(theme);
+    if (theme == 1) {
+      setState(() {
+        thememode = ThemeMode.system;
+      });
+    }
+    if (theme == 2) {
+      setState(() {
+        thememode = ThemeMode.light;
+      });
+    }
+    if (theme == 3) {
+      setState(() {
+        thememode = ThemeMode.dark;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,10 +64,12 @@ class MyApp extends StatelessWidget {
       routes: {
         '/authorization': (context) => const Authorization(),
         '/mainapp': (context) => const MainApp(),
+        '/editprofile': (context) => const EditProfile(),
       },
       title: 'InSync',
       theme: lighttheme,
       darkTheme: darktheme,
+      themeMode: thememode,
       home: const InSync(),
     );
   }
@@ -66,6 +110,7 @@ class _InSyncState extends State<InSync> {
   void initialization() async {
     setState(() {});
     // FlutterNativeSplash.remove();
+    Constants.themeSystemPref();
     startTimeout();
   }
 

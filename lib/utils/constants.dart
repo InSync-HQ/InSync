@@ -19,11 +19,34 @@ class Constants {
     prefs.setBool('auth', false);
   }
 
+  static themeSystemPref() async {
+    late SharedPreferences prefs;
+    prefs = await SharedPreferences.getInstance();
+    prefs.setInt('theme', 1);
+  }
+
+  static themeLightPref() async {
+    late SharedPreferences prefs;
+    prefs = await SharedPreferences.getInstance();
+    prefs.setInt('theme', 2);
+  }
+
+  static themeDarkPref() async {
+    late SharedPreferences prefs;
+    prefs = await SharedPreferences.getInstance();
+    prefs.setInt('theme', 3);
+  }
+
   static Future<bool?> retrieveAuthPref() async {
     late SharedPreferences prefs;
     prefs = await SharedPreferences.getInstance();
-    print(prefs.getBool('auth'));
     return prefs.getBool('auth');
+  }
+
+  static Future<int?> retrievethemePref() async {
+    late SharedPreferences prefs;
+    prefs = await SharedPreferences.getInstance();
+    return prefs.getInt('theme');
   }
 
   static deletePref(String key) async {
