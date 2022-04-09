@@ -28,7 +28,6 @@ class _CommunityState extends State<Community> {
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          // ignore: prefer_const_literals_to_create_immutables
           children: [
             const InputField(
               label: "Search for a community",
@@ -55,8 +54,8 @@ class _CommunityState extends State<Community> {
                         ),
                       );
                     },
-                    bgColor: const Color(0xffFFD4D4),
-                    textColor: const Color(0xffBD3A4A),
+                    bgColor: Theme.of(context).primaryColor.withOpacity(0.2),
+                    textColor: Theme.of(context).primaryColorDark,
                     iconLeft: const Icon(FeatherIcons.plusCircle),
                   ),
                 ),
@@ -67,8 +66,13 @@ class _CommunityState extends State<Community> {
                     onPressed: () {
                       Navigator.of(context).pushNamed("/mainapp");
                     },
-                    bgColor: const Color(0xffD3E5FE),
-                    textColor: const Color(0xff1B4ACB),
+                    bgColor: Theme.of(context)
+                        .colorScheme
+                        .secondary
+                        .withOpacity(0.25),
+                    textColor: Theme.of(context)
+                        .colorScheme
+                        .secondary,
                     iconLeft: const Icon(FeatherIcons.compass),
                   ),
                 ),
