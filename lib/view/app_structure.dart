@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:insync/view/community.dart';
-import 'package:insync/view/profile.dart';
+import 'package:insync/view/profile/profile.dart';
 import 'package:insync/widgets/bottom_nav_bar.dart';
 /*
   this has the bottom navigation bar of the app
