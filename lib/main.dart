@@ -10,11 +10,23 @@ import 'package:insync/view/profile/edit_profile.dart';
 import 'package:insync/view/splash.dart';
 import 'dart:async';
 
-void main() {
+import 'package:provider/provider.dart';
+import 'package:stacked_themes/stacked_themes.dart';
+
+Future main() async {
+  await ThemeManager.initialise();
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  // runApp(
+  //   MultiProvider(
+  //     providers: [
+  //       ChangeNotifierProvider(create: (_) => ThemeNotifier()),
+  //     ],
+  //     child: const MyApp(),
+  //   ),
+  // );
   runApp(const MyApp());
 }
 
@@ -27,55 +39,64 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   int? theme;
-  ThemeMode thememode = ThemeMode.system;
+  ThemeMode? thememode;
 
   @override
   void initState() {
-    initialization();
+    // initialization();
     super.initState();
   }
 
-  void initialization() async {
-    if (await Constants.retrievethemePref() == null) {
-      print("null call");
-      theme = 1;
-    } else {
-      theme = await Constants.retrievethemePref();
-    }
-    print("Theme number is: ");
-    print(theme);
-    if (theme == 1) {
-      setState(() {
-        thememode = ThemeMode.system;
-      });
-    }
-    if (theme == 2) {
-      setState(() {
-        thememode = ThemeMode.light;
-      });
-    }
-    if (theme == 3) {
-      setState(() {
-        thememode = ThemeMode.dark;
-      });
-    }
-  }
+  // void initialization() async {
+  //   if (await Constants.retrievethemePref() == null) {
+  //     print("null call");
+  //     theme = 1;
+  //   } else {
+  //     theme = await Constants.retrievethemePref();
+  //   }
+  //   print("Theme number is: ");
+  //   print(theme);
+  //   if (theme == 1) {
+  //     setState(() {
+  //       thememode = ThemeMode.system;
+  //     });
+  //   }
+  //   if (theme == 2) {
+  //     setState(() {
+  //       thememode = ThemeMode.light;
+  //     });
+  //   }
+  //   if (theme == 3) {
+  //     setState(() {
+  //       thememode = ThemeMode.dark;
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      // routes
-      routes: {
-        '/authorization': (context) => const Authorization(),
-        '/mainapp': (context) => const MainApp(),
-        '/editprofile': (context) => const EditProfile(),
-        '/aboutus': (context) => const AboutUs(),
-      },
-      title: 'InSync',
-      theme: lighttheme,
+    return ThemeBuilder(
+      defaultThemeMode: ThemeMode.light,
+      lightTheme: lighttheme,
       darkTheme: darktheme,
-      themeMode: thememode,
-      home: const InSync(),
+      // themes: getThemes(),
+      builder: (context, lightTheme, darkTheme, themeMode) {
+        return MaterialApp(
+          // routes
+          routes: {
+            '/authorization': (context) => const Authorization(),
+            '/mainapp': (context) => const MainApp(),
+            '/editprofile': (context) => const EditProfile(),
+            '/aboutus': (context) => const AboutUs(),
+          },
+          title: 'InSync',
+          theme: lightTheme,
+          darkTheme: darkTheme,
+          themeMode: themeMode,
+          home: const InSync(),
+          // themeMode: Provider.of<ThemeNotifier>(context).currentTheme,
+        );
+      },
     );
   }
 }
