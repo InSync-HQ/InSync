@@ -138,13 +138,13 @@ ThemeData darktheme = ThemeData(
     ),
   ),
   bottomAppBarTheme: const BottomAppBarTheme(
-    color: Colors.white,
+    color: Color(0xFF0E0E0E),
     elevation: 0,
   ),
   //done
   appBarTheme: const AppBarTheme(
     foregroundColor: Colors.white,
-    backgroundColor: Color(0xFF1A1A1A),
+    backgroundColor: Color(0xFF0E0E0E),
     elevation: 0,
     systemOverlayStyle: SystemUiOverlayStyle.light,
     iconTheme: IconThemeData(
@@ -176,9 +176,9 @@ ThemeData darktheme = ThemeData(
     foregroundColor: Colors.white,
   ),
   //done
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    backgroundColor: Colors.grey.shade900,
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    backgroundColor: Color(0xFF0E0E0E),
     elevation: 0,
-    selectedItemColor: const Color(0xff2dadc2),
+    selectedItemColor: Color(0xff2dadc2),
   ),
 );
