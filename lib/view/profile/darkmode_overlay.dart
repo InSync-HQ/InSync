@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:insync/utils/constants.dart';
+import 'package:stacked_themes/stacked_themes.dart';
 
 class DarkModeOverlay extends StatefulWidget {
   const DarkModeOverlay({
@@ -14,28 +15,28 @@ class _DarkModeOverlayState extends State<DarkModeOverlay> {
   String? _thememode;
   @override
   void initState() {
-    // _thememode = "system";
-    super.initState();
     initialization();
+    super.initState();
   }
 
   void initialization() async {
-    var theme = await Constants.retrievethemePref();
-    if (theme == 1) {
-      setState(() {
-        _thememode = "system";
-      });
-    }
-    if (theme == 2) {
-      setState(() {
-        _thememode = "light";
-      });
-    }
-    if (theme == 3) {
-      setState(() {
-        _thememode = "dark";
-      });
-    }
+    _thememode = getThemeManager(context).isDarkMode ? "dark" : "light";
+    //   var theme = await Constants.retrievethemePref();
+    //   if (theme == 1) {
+    //     setState(() {
+    //       _thememode = "system";
+    //     });
+    //   }
+    //   if (theme == 2) {
+    //     setState(() {
+    //       _thememode = "light";
+    //     });
+    //   }
+    //   if (theme == 3) {
+    //     setState(() {
+    //       _thememode = "dark";
+    //     });
+    //   }
   }
 
   @override
@@ -81,26 +82,30 @@ class _DarkModeOverlayState extends State<DarkModeOverlay> {
                 ),
               ),
               const SizedBox(height: 24),
+              // ListTile(
+              //   onTap: () {
+              //     getThemeManager(context).setThemeMode(ThemeMode.system);
+              //     setState(() {
+              //       _thememode = "system";
+              //       Constants.themeSystemPref();
+              //     });
+              //   },
+              //   title: const Text('System'),
+              //   leading: Radio(
+              //     value: "system",
+              //     groupValue: _thememode,
+              //     onChanged: (String? value) {
+              //       getThemeManager(context).setThemeMode(ThemeMode.system);
+              //       setState(() {
+              //         _thememode = value;
+              //       });
+              //     },
+              //   ),
+              // ),
               ListTile(
                 onTap: () {
-                  setState(() {
-                    _thememode = "system";
-                    Constants.themeSystemPref();
-                  });
-                },
-                title: const Text('System'),
-                leading: Radio(
-                  value: "system",
-                  groupValue: _thememode,
-                  onChanged: (String? value) {
-                    setState(() {
-                      _thememode = value;
-                    });
-                  },
-                ),
-              ),
-              ListTile(
-                onTap: () {
+                  getThemeManager(context).setThemeMode(ThemeMode.light);
+                  print(_thememode);
                   setState(() {
                     _thememode = "light";
                     Constants.themeLightPref();
@@ -111,6 +116,7 @@ class _DarkModeOverlayState extends State<DarkModeOverlay> {
                   value: "light",
                   groupValue: _thememode,
                   onChanged: (String? value) {
+                    getThemeManager(context).setThemeMode(ThemeMode.light);
                     setState(() {
                       _thememode = value;
                       Constants.themeLightPref();
@@ -120,6 +126,8 @@ class _DarkModeOverlayState extends State<DarkModeOverlay> {
               ),
               ListTile(
                 onTap: () {
+                  getThemeManager(context).setThemeMode(ThemeMode.dark);
+                  print(_thememode);
                   setState(() {
                     _thememode = "dark";
                     Constants.themeDarkPref();
@@ -130,6 +138,7 @@ class _DarkModeOverlayState extends State<DarkModeOverlay> {
                   value: "dark",
                   groupValue: _thememode,
                   onChanged: (String? value) {
+                    getThemeManager(context).setThemeMode(ThemeMode.dark);
                     setState(() {
                       _thememode = value;
                       Constants.themeDarkPref();

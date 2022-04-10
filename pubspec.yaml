@@ -38,6 +38,7 @@ dependencies:
   multi_select_flutter: ^4.1.2
   provider: ^6.0.2
   url_launcher: ^6.0.20
+  stacked_themes: ^0.3.8+1
   
   
 

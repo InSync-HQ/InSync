@@ -3,6 +3,7 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:insync/utils/constants.dart';
 import 'package:insync/main.dart';
 import 'package:insync/view/profile/darkmode_overlay.dart';
+import 'package:stacked_themes/stacked_themes.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -12,22 +13,6 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  bool isSwitched = false;
-  String visibilityVal = 'Private';
-  void toggleSwitch(bool value) {
-    if (isSwitched == false) {
-      setState(() {
-        isSwitched = true;
-        visibilityVal = 'Public';
-      });
-    } else {
-      setState(() {
-        isSwitched = false;
-        visibilityVal = 'Private';
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,10 +61,12 @@ class _ProfileState extends State<Profile> {
               size: 24,
             ),
             title: const Text(
-              "Dark Mode",
+              "Theme",
               style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
             ),
-            subtitle: const Text("system prefrence"),
+            subtitle: getThemeManager(context).isDarkMode
+                ? const Text("Dark mode")
+                : const Text("Light mode"),
             trailing: const Icon(FeatherIcons.chevronRight),
             onTap: () {
               showModalBottomSheet<void>(

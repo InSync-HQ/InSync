@@ -70,9 +70,7 @@ class _CommunityState extends State<Community> {
                         .colorScheme
                         .secondary
                         .withOpacity(0.25),
-                    textColor: Theme.of(context)
-                        .colorScheme
-                        .secondary,
+                    textColor: Theme.of(context).colorScheme.secondary,
                     iconLeft: const Icon(FeatherIcons.compass),
                   ),
                 ),
