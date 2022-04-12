@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:insync/utils/constants.dart';
-import 'package:insync/main.dart';
 import 'package:insync/view/profile/darkmode_overlay.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 

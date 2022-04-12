@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:insync/view/create_community_overlay.dart';
+import 'package:insync/view/community/create_community_overlay.dart';
 import 'package:insync/widgets/button.dart';
 import 'package:insync/widgets/input_field.dart';
 
