@@ -3,7 +3,7 @@ import 'package:insync/utils/constants.dart';
 import 'package:flutter/services.dart';
 // import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:insync/view/app_structure.dart';
-import 'package:insync/view/authorization.dart';
+import 'package:insync/view/auth/authorization.dart';
 import 'package:insync/utils/theme_config.dart';
 import 'package:insync/view/profile/aboutus.dart';
 import 'package:insync/view/profile/edit_profile.dart';
@@ -13,7 +13,7 @@ import 'package:stacked_themes/stacked_themes.dart';
 
 Future main() async {
   await ThemeManager.initialise();
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);

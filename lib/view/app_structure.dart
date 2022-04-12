@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:insync/view/community.dart';
-import 'package:insync/view/home.dart';
+import 'package:insync/view/community/community.dart';
+import 'package:insync/view/home/home.dart';
 import 'package:insync/view/profile/profile.dart';
 import 'package:insync/widgets/bottom_nav_bar.dart';
 /*

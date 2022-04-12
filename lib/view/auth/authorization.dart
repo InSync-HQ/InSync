@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:insync/view/create_account_overlay.dart';
-import 'package:insync/view/login_overlay.dart';
+import 'package:insync/view/auth/create_account_overlay.dart';
+import 'package:insync/view/auth/login_overlay.dart';
 import 'package:insync/widgets/button.dart';
 
 class Authorization extends StatefulWidget {
