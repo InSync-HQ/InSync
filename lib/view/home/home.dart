@@ -62,6 +62,7 @@ class _HomePageState extends State<HomePage> {
   ];
   @override
   Widget build(BuildContext context) {
+    MediaQueryData queryData = MediaQuery.of(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -89,7 +90,7 @@ class _HomePageState extends State<HomePage> {
           Center(
             child: TCard(
               cards: cardFunc(context, newsarr),
-              size: const Size(380, 550),
+              size: Size(queryData.size.width - 8, queryData.size.height - 240),
               onForward: (index, si) {
                 if (si.direction == SwipDirection.Right) {
                   //Swipe functionality
@@ -109,62 +110,62 @@ class _HomePageState extends State<HomePage> {
               },
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              CircleAvatar(
-                radius: 25,
-                backgroundColor: const Color(0xffecf0f4),
-                child: IconButton(
-                    onPressed: () {
-                      // Custom Function
-                    },
-                    icon: const Icon(
-                      Icons.arrow_circle_left_outlined,
-                      color: Colors.grey,
-                    )),
-              ),
-              GestureDetector(
-                onTap: () {
-                  // Navigator.of(context).push(
-                  //   MaterialPageRoute(
-                  //     builder: (context) {
-                  //       return const ArticlePage();
-                  //     },
-                  //   ),
-                  // );
-                },
-                child: const Chip(
-                  labelPadding: EdgeInsets.all(8),
-                  label: Text('Read more'),
-                  backgroundColor: Color(0xffecf0f4),
-                  labelStyle: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w800),
-                ),
-              ),
-              CircleAvatar(
-                radius: 25,
-                backgroundColor: const Color(0xffecf0f4),
-                child: IconButton(
-                  onPressed: () {
-                    // Navigator.of(context).push(
-                    //   MaterialPageRoute(
-                    //     builder: (context) {
-                    //       return ArticlePage(headline:,);
-                    //     },
-                    //   ),
-                    // );
-                  },
-                  icon: const Icon(
-                    Icons.arrow_circle_right_outlined,
-                    color: Colors.grey,
-                  ),
-                ),
-              )
-            ],
-          )
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+          //   children: [
+          //     CircleAvatar(
+          //       radius: 25,
+          //       backgroundColor: const Color(0xffecf0f4),
+          //       child: IconButton(
+          //           onPressed: () {
+          //             // Custom Function
+          //           },
+          //           icon: const Icon(
+          //             Icons.arrow_circle_left_outlined,
+          //             color: Colors.grey,
+          //           )),
+          //     ),
+          //     GestureDetector(
+          //       onTap: () {
+          //         // Navigator.of(context).push(
+          //         //   MaterialPageRoute(
+          //         //     builder: (context) {
+          //         //       return const ArticlePage();
+          //         //     },
+          //         //   ),
+          //         // );
+          //       },
+          //       child: const Chip(
+          //         labelPadding: EdgeInsets.all(8),
+          //         label: Text('Read more'),
+          //         backgroundColor: Color(0xffecf0f4),
+          //         labelStyle: TextStyle(
+          //             color: Colors.grey,
+          //             fontSize: 15,
+          //             fontWeight: FontWeight.w800),
+          //       ),
+          //     ),
+          //     CircleAvatar(
+          //       radius: 25,
+          //       backgroundColor: const Color(0xffecf0f4),
+          //       child: IconButton(
+          //         onPressed: () {
+          //           // Navigator.of(context).push(
+          //           //   MaterialPageRoute(
+          //           //     builder: (context) {
+          //           //       return ArticlePage(headline:,);
+          //           //     },
+          //           //   ),
+          //           // );
+          //         },
+          //         icon: const Icon(
+          //           Icons.arrow_circle_right_outlined,
+          //           color: Colors.grey,
+          //         ),
+          //       ),
+          //     )
+          //   ],
+          // ),
         ],
       ),
     );
