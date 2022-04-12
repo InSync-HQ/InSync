@@ -35,7 +35,7 @@ List<ThemeData> getThemes() {
 ThemeData lighttheme = ThemeData(
   visualDensity: VisualDensity.adaptivePlatformDensity,
   cardTheme: const CardTheme(
-    shadowColor: Color(0x1100d2ff),
+    shadowColor: Color.fromARGB(42, 24, 35, 37),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.all(Radius.circular(20)),
     ),
@@ -109,10 +109,10 @@ ThemeData darktheme = ThemeData(
   brightness: Brightness.dark,
   visualDensity: VisualDensity.adaptivePlatformDensity,
   cardTheme: const CardTheme(
-    shadowColor: Color(0x1100d2ff),
+    color: Color(0xff1a1a1a),
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(20)),
-    ),
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+        side: BorderSide(color: Color(0xff111111), width: 2)),
     elevation: 10,
   ),
   listTileTheme: const ListTileThemeData(iconColor: Colors.white),

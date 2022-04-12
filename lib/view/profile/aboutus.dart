@@ -42,8 +42,7 @@ class AboutUs extends StatelessWidget {
             socialLink: "https://www.linkedin.com/in/gokul-j-kurup-4538b4193/",
           ),
           DevProfileTile(
-            url:
-                "https://media-exp1.licdn.com/dms/image/D5635AQHzORox0Ixnvg/profile-framedphoto-shrink_400_400/0/1631099514947?e=1649761200&v=beta&t=feDDmpufFNNy3VkOOUNrMXLd30YD_6E2d0JL_ZcLbyQ",
+            url: "https://i.imgur.com/wyO5Hom.jpeg",
             name: "Alex Thomas",
             designation: "Documentation maintainer",
             icon: FeatherIcons.linkedin,
@@ -70,7 +69,8 @@ class AboutUs extends StatelessWidget {
             socialLink: "https://www.linkedin.com/in/abishek-r-9aa0a41a0/",
           ),
           DevProfileTile(
-            url: "https://media-exp1.licdn.com/dms/image/C5103AQEUIra6g5xD4Q/profile-displayphoto-shrink_400_400/0/1572323749353?e=1655337600&v=beta&t=13s4dnJYZDv_lRCwYF5bd73o7qq72OIpJOfKcTM3Q24",
+            url:
+                "https://media-exp1.licdn.com/dms/image/C5103AQEUIra6g5xD4Q/profile-displayphoto-shrink_400_400/0/1572323749353?e=1655337600&v=beta&t=13s4dnJYZDv_lRCwYF5bd73o7qq72OIpJOfKcTM3Q24",
             name: "SaratChandra Kumar",
             designation: "Backend Dev",
             icon: FeatherIcons.linkedin,
