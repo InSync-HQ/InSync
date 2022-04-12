@@ -9,8 +9,6 @@ import 'package:insync/view/profile/aboutus.dart';
 import 'package:insync/view/profile/edit_profile.dart';
 import 'package:insync/view/splash.dart';
 import 'dart:async';
-
-import 'package:provider/provider.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
 Future main() async {

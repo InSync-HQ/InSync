@@ -74,7 +74,7 @@ class _CreateCommunityOverlayState extends State<CreateCommunityOverlay> {
         builder: (_, controller) => Container(
           clipBehavior: Clip.hardEdge,
           decoration: BoxDecoration(
-            color: Theme.of(context).scaffoldBackgroundColor,
+            color: Theme.of(context).bottomAppBarTheme.color,
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:insync/utils/theme_config.dart';
+import 'package:insync/view/article_page.dart';
+import 'package:insync/widgets/button.dart';
+import 'package:insync/widgets/news_tag.dart';
 import 'package:tcard/tcard.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,100 +17,105 @@ class _HomePageState extends State<HomePage> {
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        backgroundColor: lighttheme.scaffoldBackgroundColor,
-        body: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          "Your Newsfeed",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        automaticallyImplyLeading: false,
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 24, top: 16),
+            child: SizedBox(
+              height: 40,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return customChip(index);
+                },
+              ),
+            ),
+          ),
+          const SizedBox(height: 12),
+          Center(
+            child: TCard(
+              cards: cardFunc(context),
+              size: const Size(380, 550),
+              onForward: (index, si) {
+                if (si.direction == SwipDirection.Right) {
+                  //Swipe functionality
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const ArticlePage();
+                      },
+                    ),
+                  );
+                }
+              },
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              SizedBox(
-                height: 20,
-              ),
-              const Padding(
-                padding: EdgeInsets.fromLTRB(
-                  22,
-                  0,
-                  0,
-                  0,
-                ),
-                child: Text(
-                  'Your Newsfeed',
-                  style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
-                ),
-              ),
-              const SizedBox(height: 8),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(
-                  20,
-                  0,
-                  0,
-                  0,
-                ),
-                child: SizedBox(
-                  height: 40,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 10,
-                    itemBuilder: (context, index) {
-                      return customChip(index);
+              CircleAvatar(
+                radius: 25,
+                backgroundColor: const Color(0xffecf0f4),
+                child: IconButton(
+                    onPressed: () {
+                      // Custom Function
                     },
-                  ),
+                    icon: const Icon(
+                      Icons.arrow_circle_left_outlined,
+                      color: Colors.grey,
+                    )),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const ArticlePage();
+                      },
+                    ),
+                  );
+                },
+                child: const Chip(
+                  labelPadding: EdgeInsets.all(8),
+                  label: Text('Read more'),
+                  backgroundColor: Color(0xffecf0f4),
+                  labelStyle: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w800),
                 ),
               ),
-              const SizedBox(height: 10),
-              Center(
-                child: TCard(
-                  cards: cardFunc(),
-                  size: const Size(380, 550),
-                  onForward: (index, si) {
-                    if (si.direction == SwipDirection.Right) {
-                      //Swipe functionality
-                    }
+              CircleAvatar(
+                radius: 25,
+                backgroundColor: const Color(0xffecf0f4),
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const ArticlePage();
+                        },
+                      ),
+                    );
                   },
+                  icon: const Icon(
+                    Icons.arrow_circle_right_outlined,
+                    color: Colors.grey,
+                  ),
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  CircleAvatar(
-                    radius: 25,
-                    backgroundColor: const Color(0xffecf0f4),
-                    child: IconButton(
-                        onPressed: () {
-                          // Custom Function
-                        },
-                        icon: const Icon(
-                          Icons.arrow_circle_left_outlined,
-                          color: Colors.grey,
-                        )),
-                  ),
-                  const Chip(
-                    labelPadding: EdgeInsets.all(8),
-                    label: Text('Read more'),
-                    backgroundColor: Color(0xffecf0f4),
-                    labelStyle: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w800),
-                  ),
-                  CircleAvatar(
-                    radius: 25,
-                    backgroundColor: const Color(0xffecf0f4),
-                    child: IconButton(
-                        onPressed: () {
-                          // Custom Function
-                        },
-                        icon: const Icon(
-                          Icons.arrow_circle_right_outlined,
-                          color: Colors.grey,
-                        )),
-                  )
-                ],
               )
             ],
-          ),
-        ),
+          )
+        ],
       ),
     );
   }
@@ -117,7 +126,7 @@ class _HomePageState extends State<HomePage> {
         currentIndex = index;
       }),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 6),
         child: Chip(
           backgroundColor: (currentIndex == index)
               ? Colors.black
@@ -136,150 +145,108 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-List<Widget> cardFunc() {
+List<Widget> cardFunc(BuildContext context) {
   return List.generate(
     10,
-    (index) => Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                blurRadius: 25,
-                spreadRadius: -7,
-                offset: const Offset(0, 16))
-          ],
-          color: Colors.white,
-        ),
-        child: Column(children: [
-          Container(
-            height: 200,
-            color: Colors.transparent,
-            width: double.infinity,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: const Image(
-                fit: BoxFit.cover,
-                image: NetworkImage(
-                    "https://images.unsplash.com/photo-1500048993953-d23a436266cf?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1049&q=80"),
-              ),
-            ),
-          ),
-          const SizedBox(height: 10),
-          Row(
-            children: [
-              Container(
-                height: 29,
-                margin: const EdgeInsets.fromLTRB(16, 10, 10, 0),
-                width: 62,
-                decoration: BoxDecoration(
-                    color: const Color(0xffEBFCD5),
-                    borderRadius: BorderRadius.circular(5)),
-                child: const Center(
-                    child: Text(
-                  'Finance',
-                  style: TextStyle(
-                    color: Color(0xff2D9017),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 11,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                )),
-              ),
-              Container(
-                height: 29,
-                margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                width: 71,
-                decoration: BoxDecoration(
-                    color: const Color(0xffFFF5CE),
-                    borderRadius: BorderRadius.circular(5)),
-                child: const Center(
-                    child: Text(
-                  'Food Tech',
-                  style: TextStyle(
-                    color: Color(0xffDB8C09),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 11,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                )),
-              ),
-            ],
-          ),
-          const SizedBox(height: 5),
-          const Padding(
-            padding: EdgeInsets.fromLTRB(
-              16,
-              0,
-              16,
-              6.43,
-            ),
-            child: Text(
-              'Swiggy eyes 800 million IPO early next year',
-              style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.fromLTRB(
-              16,
-              0,
-              16,
-              6.43,
-            ),
-            child: Text(
-              'Swiggy and Zomato are neck-and-neck in terms of sales. In December, Swiggy claimed monthly sales of 250 million from its food delivery business, while Zomato posted sales of 733 million in the Oct...',
-              style: TextStyle(
-                  color: Colors.black, overflow: TextOverflow.ellipsis),
-              maxLines: 3,
-            ),
-          ),
+    (index) => Card(
+      clipBehavior: Clip.hardEdge,
+      child: Column(
+        children: [
           SizedBox(
-            height: 10,
+            height: 220,
+            child: Image(
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) {
+                  return child;
+                }
+                return const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 72.0),
+                  child: LinearProgressIndicator(),
+                );
+              },
+              fit: BoxFit.cover,
+              image: const NetworkImage(
+                  "https://terrigen-cdn-dev.marvel.com/content/prod/1x/webby_card_0.jpg"),
+            ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Row(
-                children: const [
-                  Icon(
-                    Icons.thumb_up_alt_outlined,
-                    color: Colors.grey,
-                    size: 15,
-                  ),
-                  SizedBox(
-                    width: 8,
-                  ),
-                  Text('2.6k likes',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                      )),
-                ],
-              ),
-              Row(
-                children: const [
-                  Text(
-                    'Read More',
-                    style: TextStyle(
-                      color: Color(0xff2561ED),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                // tags
+                Row(
+                  children: const [
+                    NewsTag(
+                      title: "Finance",
+                      color: Color(0xFF2CA411),
                     ),
+                    NewsTag(
+                      title: "Foodtech",
+                      color: Color(0xffDB8C09),
+                    ),
+                  ],
+                ),
+                // Headline
+                const Text(
+                  'Swiggy eyes 800 million IPO early next year',
+                  style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      overflow: TextOverflow.ellipsis),
+                  maxLines: 2,
+                ),
+                //news summary
+                const Text(
+                  'Providing support and resources for the planning and implementation of high-level sports in Seychelles is one of the priorities in the national strategic plan for 2021-2025, said a top official on Thursday. Five priority areas for development were identified at the presentation of the national sports strategic plan to all local partners in a forum organised by the sports department. The chief executive of the National Sports Council (NSC), Jean Larue, said that the priorities laid out in the plan include providing support and resources for the planning and implementation of high-level performance.',
+                  style: TextStyle(
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  Icon(
-                    Icons.arrow_right,
-                    color: Color(0xff2561ED),
-                  ),
-                  SizedBox(width: 5),
-                ],
-              )
-            ],
-          )
-        ])),
+                  maxLines: 3,
+                ),
+                //actions
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    PrimaryButton(
+                      buttonTitle: "2.6k likes",
+                      onPressed: null,
+                      iconLeft: const Icon(
+                        FeatherIcons.thumbsUp,
+                        size: 20,
+                      ),
+                      vertPad: 0,
+                      horzPad: 0,
+                      bgColor: Colors.transparent,
+                      textColor: Theme.of(context).textTheme.bodyLarge?.color,
+                    ),
+                    PrimaryButton(
+                      buttonTitle: "Read More",
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const ArticlePage();
+                            },
+                          ),
+                        );
+                      },
+                      iconRight: const Icon(
+                        FeatherIcons.arrowRight,
+                        size: 20,
+                      ),
+                      vertPad: 0,
+                      horzPad: 0,
+                      bgColor: Colors.transparent,
+                      textColor: Theme.of(context).colorScheme.secondary,
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    ),
   );
 }
 
