@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:insync/widgets/news_tag.dart';
 
 class ArticlePage extends StatelessWidget {
-  const ArticlePage({Key? key}) : super(key: key);
+  const ArticlePage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
