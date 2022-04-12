@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:insync/utils/theme_config.dart';
@@ -5,6 +7,20 @@ import 'package:insync/view/article_page.dart';
 import 'package:insync/widgets/button.dart';
 import 'package:insync/widgets/news_tag.dart';
 import 'package:tcard/tcard.dart';
+
+class News {
+  final String headline;
+  final String desc;
+  final String imgURL;
+  final int likes;
+
+  News({
+    this.headline = "",
+    this.desc = "",
+    this.imgURL = "",
+    this.likes = 0,
+  });
+}
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,6 +31,31 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int currentIndex = 0;
+  List<News> newsarr = <News>[
+    News(
+      headline: "Twitter edit button is finally coming, testing to begin soon",
+      desc:
+          "Twitter has confirmed that it has been working on an edit button, a feature that users have been requesting for a long time to fix not just typos but also the wrong context in their tweets. Currently, users resort to deleting tweets with errors and retype them with corrections, but an edit button would do away with the hassle. But, at the same time, Twitter is concerned that the edit button could be misused to 'alter the record of the public conversation.' The announcement comes nearly a day after Tesla CEO Elon Musk, who recently acquired a 9.",
+      imgURL:
+          "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202204/twitteredit_06042022-647x363.jpeg?MSKpa0qyD1Goy2cYj1jSTO8xCUeRSTZi",
+    ),
+    News(
+      headline:
+          "The extensive history of Marvel superheroes fighting each other",
+      desc:
+          "This summer, Marvel Comics is taking three of its top teams - the Avengers, the X-Men, and the Eternals - and mashing them all up into a threeway conflict for the event AXE: Judgment Day ('AXE' for the initials of the three aforementioned teams, of course). The motivations for the conflict come down to some contentious beliefs growing among the Eternals about the origin of mutants, with the Eternals now believing that mutantkind are offshoots of the Deviants, the ancient enemies of the Eternals.Whether that winds up being true or not (and whether the truth will even matter to the conflict), one thing that's undeniable is that AXE: Judgment Day's hero vs.",
+      imgURL:
+          "https://cdn.mos.cms.futurecdn.net/NbkvkgfMP6du7nre4qUH6K-1200-80.jpg",
+    ),
+    News(
+      headline:
+          "'How Do I Evade Taxes Legally': Someone Asked This Question & Twitter Had All The Answers",
+      desc:
+          "If you know anything about the internet, they will take anything to heart. This turned true for 19-year-old YouTube creator Ishan Sharma who asked his 42.8k Twitter followers if they had any tips on legally evading taxes. And rest assured, they pulled through. Guys, I really want to evade taxes legally.Any tips?— Ishan Sharma (@Ishansharma7390) April 4, 2022 Step 1: Call it planning, NOT evading. Check out some mind-blowing tips that I know I'll certainly keep in mind while filing my taxes:1)PPF or ELSS fund2) registering a company gives you many benefits like gst rebates and showing all your expenditure as company expenditure and show that even u get a salary but it should be very minimal3)get insurance for urself ⬇️⬇️— desi tolkien (@garvgoyal123) April 4, 2022 4)instead of directly spending money buy stocks and take a loan against it and spend that loan money you would save tax + keep stocks for 2years+ so u would have to pay only 10% tax5) get a home loan and gets lots of benefits and get direct tax exemption of 2L annually⬇️⬇️— desi tolkien (@garvgoyal123) April 4, 2022 If you live with your parents, make a rent agreement with them and try to utilise maximum HRA you can.",
+      imgURL:
+          "https://s4.scoopwhoop.com/anj2/624bd59017eb290001fef72f/0c7a6830-943a-4955-a968-b209d6f62641.jpg",
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +84,7 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 12),
           Center(
             child: TCard(
-              cards: cardFunc(context),
+              cards: cardFunc(context, newsarr),
               size: const Size(380, 550),
               onForward: (index, si) {
                 if (si.direction == SwipDirection.Right) {
@@ -145,10 +186,34 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-List<Widget> cardFunc(BuildContext context) {
+List<Widget> cardFunc(BuildContext context, List<News> array) {
   return List.generate(
-    10,
-    (index) => Card(
+    array.length,
+    (index) => NewsCard(
+      headline: array[index].headline,
+      news: array[index].desc,
+      imgURL: array[index].imgURL,
+      likes: Random().nextInt(100),
+    ),
+  );
+}
+
+class NewsCard extends StatelessWidget {
+  const NewsCard({
+    Key? key,
+    required this.headline,
+    required this.news,
+    required this.imgURL,
+    required this.likes,
+  }) : super(key: key);
+  final String headline;
+  final String news;
+  final String imgURL;
+  final int likes;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
       clipBehavior: Clip.hardEdge,
       child: Column(
         children: [
@@ -165,8 +230,7 @@ List<Widget> cardFunc(BuildContext context) {
                 );
               },
               fit: BoxFit.cover,
-              image: const NetworkImage(
-                  "https://terrigen-cdn-dev.marvel.com/content/prod/1x/webby_card_0.jpg"),
+              image: NetworkImage(imgURL),
             ),
           ),
           Padding(
@@ -187,18 +251,19 @@ List<Widget> cardFunc(BuildContext context) {
                   ],
                 ),
                 // Headline
-                const Text(
-                  'Swiggy eyes 800 million IPO early next year',
-                  style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      overflow: TextOverflow.ellipsis),
+                Text(
+                  headline,
+                  style: const TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                   maxLines: 2,
                 ),
                 //news summary
-                const Text(
-                  'Providing support and resources for the planning and implementation of high-level sports in Seychelles is one of the priorities in the national strategic plan for 2021-2025, said a top official on Thursday. Five priority areas for development were identified at the presentation of the national sports strategic plan to all local partners in a forum organised by the sports department. The chief executive of the National Sports Council (NSC), Jean Larue, said that the priorities laid out in the plan include providing support and resources for the planning and implementation of high-level performance.',
-                  style: TextStyle(
+                Text(
+                  news,
+                  style: const TextStyle(
                     overflow: TextOverflow.ellipsis,
                   ),
                   maxLines: 3,
@@ -208,7 +273,7 @@ List<Widget> cardFunc(BuildContext context) {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     PrimaryButton(
-                      buttonTitle: "2.6k likes",
+                      buttonTitle: likes.toString() + " likes",
                       onPressed: null,
                       iconLeft: const Icon(
                         FeatherIcons.thumbsUp,
@@ -246,8 +311,8 @@ List<Widget> cardFunc(BuildContext context) {
           ),
         ],
       ),
-    ),
-  );
+    );
+  }
 }
 
 class TranslucentCover extends StatelessWidget {
