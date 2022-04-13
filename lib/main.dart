@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:insync/view/app_structure.dart';
 import 'package:insync/view/auth/authorization.dart';
 import 'package:insync/utils/theme_config.dart';
+import 'package:insync/view/community/discover_community.dart';
 import 'package:insync/view/profile/aboutus.dart';
 import 'package:insync/view/profile/edit_profile.dart';
 import 'package:insync/view/splash.dart';
@@ -86,12 +87,14 @@ class _MyAppState extends State<MyApp> {
             '/mainapp': (context) => const MainApp(),
             '/editprofile': (context) => const EditProfile(),
             '/aboutus': (context) => const AboutUs(),
+            '/discover': (context) => const DiscoverCommunity(),
           },
           title: 'InSync',
           theme: lightTheme,
           darkTheme: darkTheme,
           themeMode: themeMode,
           home: const InSync(),
+          debugShowCheckedModeBanner: false,
           // themeMode: Provider.of<ThemeNotifier>(context).currentTheme,
         );
       },

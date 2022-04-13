@@ -64,7 +64,7 @@ class _CommunityState extends State<Community> {
                   child: PrimaryButton(
                     buttonTitle: "Discover",
                     onPressed: () {
-                      Navigator.of(context).pushNamed("/mainapp");
+                      Navigator.of(context).pushNamed("/discover");
                     },
                     bgColor: Theme.of(context)
                         .colorScheme

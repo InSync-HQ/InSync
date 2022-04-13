@@ -36,6 +36,7 @@ ThemeData lighttheme = ThemeData(
   visualDensity: VisualDensity.adaptivePlatformDensity,
   cardTheme: const CardTheme(
     shadowColor: Color.fromARGB(42, 24, 35, 37),
+    clipBehavior: Clip.hardEdge,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.all(Radius.circular(20)),
     ),
@@ -69,7 +70,11 @@ ThemeData lighttheme = ThemeData(
     foregroundColor: Color(0xFF1A1A1A),
     backgroundColor: Colors.white,
     elevation: 0,
-    systemOverlayStyle: SystemUiOverlayStyle.dark,
+    systemOverlayStyle: SystemUiOverlayStyle(
+      statusBarColor: Colors.white,
+      statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
+      statusBarBrightness: Brightness.light, // For iOS (dark icons)
+    ),
     iconTheme: IconThemeData(
       color: Colors.black,
     ),
@@ -146,7 +151,11 @@ ThemeData darktheme = ThemeData(
     foregroundColor: Colors.white,
     backgroundColor: Color(0xFF0E0E0E),
     elevation: 0,
-    systemOverlayStyle: SystemUiOverlayStyle.light,
+    systemOverlayStyle: SystemUiOverlayStyle(
+      statusBarColor: Color(0xff0e0e0e),
+      statusBarIconBrightness: Brightness.light, // For Android (dark icons)
+      statusBarBrightness: Brightness.dark, // For iOS (dark icons)
+    ),
     iconTheme: IconThemeData(
       color: Colors.white,
     ),
