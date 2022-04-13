@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Splash extends StatelessWidget {
   const Splash({Key? key}) : super(key: key);
@@ -6,6 +7,15 @@ class Splash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).primaryColor,
+        automaticallyImplyLeading: false,
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: Theme.of(context).primaryColor,
+          statusBarIconBrightness: Brightness.light,
+          statusBarBrightness: Brightness.dark,
+        ),
+      ),
       body: Container(
         decoration: const BoxDecoration(color: Color(0xffFD4C62)),
         width: MediaQuery.of(context).size.width,

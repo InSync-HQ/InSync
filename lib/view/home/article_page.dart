@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:insync/utils/classes.dart';
 import 'package:insync/widgets/auto_generate_interest_tags.dart';
-import 'package:insync/widgets/news_tag.dart';
 
 class ArticlePage extends StatelessWidget {
   const ArticlePage({
