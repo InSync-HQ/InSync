@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:insync/view/community/create_community_overlay.dart';
 import 'package:insync/widgets/button.dart';
+import 'package:insync/widgets/community_chat_tile.dart';
 import 'package:insync/widgets/input_field.dart';
 
 class Community extends StatefulWidget {
@@ -76,24 +79,35 @@ class _CommunityState extends State<Community> {
                 ),
               ],
             ),
-            const Spacer(),
-            Column(
-              children: const [
-                Image(image: AssetImage("assets/nocommunities.png")),
-                Text(
-                  "No communities found",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  "Join communities or simply create one",
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Color(0xff5C657D),
+            if (1 == 0)
+              Column(
+                children: const [
+                  SizedBox(height: 64),
+                  Image(image: AssetImage("assets/nocommunities.png")),
+                  Text(
+                    "No communities found",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    "Join communities or simply create one",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Color(0xff5C657D),
+                    ),
+                  ),
+                ],
+              )
+            else
+              Expanded(
+                child: ListView.builder(
+                  itemCount: 20,
+                  itemBuilder: (context, index) => CommunityChatTile(
+                    communityName: "Hayat's Community",
+                    imgURL:
+                        "https://picsum.photos/seed/${Random().nextInt(100)}/300/300",
                   ),
                 ),
-              ],
-            ),
-            const Spacer(),
+              ),
           ],
         ),
       ),
