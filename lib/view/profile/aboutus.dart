@@ -34,9 +34,8 @@ class AboutUs extends StatelessWidget {
             socialLink: "https://hayattamboli.vercel.app/",
           ),
           DevProfileTile(
-            url:
-                "https://media-exp1.licdn.com/dms/image/D5635AQFsyJKsEZa-6w/profile-framedphoto-shrink_400_400/0/1641966967283?e=1649761200&v=beta&t=AWnb9KZMUd1YT2Z2O3kts8I00TrXzsAsDNmAMuZ92mk",
-            name: "Kurup Gokul",
+            url: "https://avatars.githubusercontent.com/u/30615210?v=4",
+            name: "Gokul J Kurup",
             designation: "Backend Dev",
             icon: FeatherIcons.linkedin,
             socialLink: "https://www.linkedin.com/in/gokul-j-kurup-4538b4193/",
