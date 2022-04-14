@@ -97,9 +97,9 @@ ThemeData lighttheme = ThemeData(
   fontFamily: 'General Sans',
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
     elevation: 0,
-    backgroundColor: Color(0xff2dadc2),
+    backgroundColor: Color(0xffFD4C62),
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(20)),
+      borderRadius: BorderRadius.all(Radius.circular(16)),
     ),
     foregroundColor: Colors.white,
   ),
@@ -178,9 +178,9 @@ ThemeData darktheme = ThemeData(
   fontFamily: 'General Sans',
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
     elevation: 0,
-    backgroundColor: Color(0xff2dadc2),
+    backgroundColor: Color(0xffFD4C62),
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(20)),
+      borderRadius: BorderRadius.all(Radius.circular(16)),
     ),
     foregroundColor: Colors.white,
   ),

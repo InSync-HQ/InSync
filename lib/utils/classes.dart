@@ -25,3 +25,15 @@ class News {
     this.interestTags = const [],
   });
 }
+
+class CommunityCategoryClass {
+  final String emoji;
+  final String title;
+  final Color color;
+
+  CommunityCategoryClass({
+    required this.emoji,
+    required this.color,
+    required this.title,
+  });
+}
