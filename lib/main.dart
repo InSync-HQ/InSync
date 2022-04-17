@@ -13,7 +13,6 @@ import 'package:insync/view/profile/edit_profile.dart';
 import 'package:insync/view/splash.dart';
 import 'dart:async';
 import 'package:stacked_themes/stacked_themes.dart';
-import 'package:dio/dio.dart';
 
 Future main() async {
   await ThemeManager.initialise();
