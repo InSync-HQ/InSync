@@ -28,7 +28,7 @@ class NewsCard extends StatelessWidget {
         children: [
           NewsCardMedia(imgURL: imgURL),
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(12.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -87,7 +87,8 @@ class NewsCardMedia extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 224,
+      height: MediaQuery.of(context).size.height/5,
+      width: double.infinity,
       child: Image(
         loadingBuilder: (context, child, loadingProgress) {
           if (loadingProgress == null) {

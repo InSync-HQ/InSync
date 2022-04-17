@@ -90,7 +90,7 @@ class _HomePageState extends State<HomePage> {
           Center(
             child: TCard(
               cards: cardFunc(context, newsarr),
-              size: Size(queryData.size.width - 8, queryData.size.height - 240),
+              size: Size(queryData.size.width - 8, queryData.size.height - 190),
               onForward: (index, si) {
                 if (si.direction == SwipDirection.Right) {
                   //Swipe functionality

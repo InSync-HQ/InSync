@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:insync/utils/constants.dart';
@@ -12,6 +13,21 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  @override
+  void initState() {
+    super.initState();
+    // getName();
+  }
+
+  void getName() async {
+    var response = await Dio().get(
+      'https://insync-backend-2022.herokuapp.com/user/fetchById',
+    );
+    print("👇👇👇");
+    print(response.data.toString());
+    print("👆👆👆");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

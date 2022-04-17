@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:insync/utils/constants.dart';
 import 'package:flutter/services.dart';
-// import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:insync/view/app_structure.dart';
 import 'package:insync/view/auth/authorization.dart';
 import 'package:insync/utils/theme_config.dart';
@@ -11,21 +10,13 @@ import 'package:insync/view/profile/edit_profile.dart';
 import 'package:insync/view/splash.dart';
 import 'dart:async';
 import 'package:stacked_themes/stacked_themes.dart';
+import 'package:dio/dio.dart';
 
 Future main() async {
   await ThemeManager.initialise();
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  // runApp(
-  //   MultiProvider(
-  //     providers: [
-  //       ChangeNotifierProvider(create: (_) => ThemeNotifier()),
-  //     ],
-  //     child: const MyApp(),
-  //   ),
-  // );
   runApp(const MyApp());
 }
 
@@ -45,32 +36,6 @@ class _MyAppState extends State<MyApp> {
     // initialization();
     super.initState();
   }
-
-  // void initialization() async {
-  //   if (await Constants.retrievethemePref() == null) {
-  //     print("null call");
-  //     theme = 1;
-  //   } else {
-  //     theme = await Constants.retrievethemePref();
-  //   }
-  //   print("Theme number is: ");
-  //   print(theme);
-  //   if (theme == 1) {
-  //     setState(() {
-  //       thememode = ThemeMode.system;
-  //     });
-  //   }
-  //   if (theme == 2) {
-  //     setState(() {
-  //       thememode = ThemeMode.light;
-  //     });
-  //   }
-  //   if (theme == 3) {
-  //     setState(() {
-  //       thememode = ThemeMode.dark;
-  //     });
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {

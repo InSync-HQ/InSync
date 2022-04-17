@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:insync/utils/constants.dart';
 import 'package:insync/view/auth/create_account_overlay.dart';
@@ -67,6 +68,8 @@ class LoginOverlay extends StatelessWidget {
               PrimaryButton(
                 buttonTitle: "Continue",
                 onPressed: () {
+
+                  // var response = Dio().post("");
                   Constants.loginPref();
                   Constants.retrieveAuthPref();
                   Navigator.pushNamed(context, '/mainapp');
