@@ -87,7 +87,7 @@ class NewsCardMedia extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height/5,
+      height: MediaQuery.of(context).size.height / 5,
       width: double.infinity,
       child: Image(
         loadingBuilder: (context, child, loadingProgress) {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:insync/widgets/button.dart';
 import 'package:insync/widgets/input_field.dart';
+import 'package:image_picker/image_picker.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({Key? key}) : super(key: key);
@@ -35,8 +36,13 @@ class _EditProfileState extends State<EditProfile> {
                   const SizedBox(width: 16),
                   Column(
                     children: [
-                      const PrimaryButton(
-                          buttonTitle: "Change Photo", onPressed: null),
+                      PrimaryButton(
+                        buttonTitle: "Change Photo",
+                        onPressed: () async {
+                          PickedFile? pickedFile = await ImagePicker()
+                              .getImage(source: ImageSource.gallery);
+                        },
+                      ),
                       PrimaryButton(
                         buttonTitle: "Remove Photo",
                         onPressed: null,

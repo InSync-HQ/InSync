@@ -58,7 +58,6 @@ class _MyAppState extends State<MyApp> {
             '/forum': (BuildContext context) => const ForumPage(),
             '/forum/1': (BuildContext context) => const ForumDetailPage(),
             '/interests': (BuildContext context) => const Addinterests(),
-
           },
           title: 'InSync',
           theme: lightTheme,

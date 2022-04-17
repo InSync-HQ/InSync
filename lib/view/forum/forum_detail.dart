@@ -74,8 +74,8 @@ class _ForumDetailPageState extends State<ForumDetailPage> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: (){
-                    var message= messagectr.text;
+                  onTap: () {
+                    var message = messagectr.text;
                   },
                   child: CircleAvatar(
                     radius: 24,

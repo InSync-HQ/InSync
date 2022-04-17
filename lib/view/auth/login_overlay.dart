@@ -68,7 +68,6 @@ class LoginOverlay extends StatelessWidget {
               PrimaryButton(
                 buttonTitle: "Continue",
                 onPressed: () {
-
                   // var response = Dio().post("");
                   Constants.loginPref();
                   Constants.retrieveAuthPref();
