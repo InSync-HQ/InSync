@@ -50,7 +50,7 @@ class _DarkModeOverlayState extends State<DarkModeOverlay> {
         builder: (_, controller) => Container(
           clipBehavior: Clip.hardEdge,
           decoration: BoxDecoration(
-            color: Theme.of(context).bottomAppBarColor,
+            color: Theme.of(context).bottomAppBarTheme.color,
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
@@ -105,7 +105,6 @@ class _DarkModeOverlayState extends State<DarkModeOverlay> {
               ListTile(
                 onTap: () {
                   getThemeManager(context).setThemeMode(ThemeMode.light);
-                  print(_thememode);
                   setState(() {
                     _thememode = "light";
                     Constants.themeLightPref();
@@ -127,7 +126,6 @@ class _DarkModeOverlayState extends State<DarkModeOverlay> {
               ListTile(
                 onTap: () {
                   getThemeManager(context).setThemeMode(ThemeMode.dark);
-                  print(_thememode);
                   setState(() {
                     _thememode = "dark";
                     Constants.themeDarkPref();

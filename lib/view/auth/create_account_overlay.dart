@@ -1,27 +1,38 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:insync/utils/constants.dart';
-import 'package:insync/view/create_account_overlay.dart';
+import 'package:insync/view/auth/login_overlay.dart';
 import 'package:insync/widgets/button.dart';
 import 'package:insync/widgets/dividing_or.dart';
 import 'package:insync/widgets/input_field.dart';
 
-class LoginOverlay extends StatelessWidget {
-  const LoginOverlay({
+class CreateAccountOverlay extends StatefulWidget {
+  const CreateAccountOverlay({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<CreateAccountOverlay> createState() => _CreateAccountOverlayState();
+}
+
+class _CreateAccountOverlayState extends State<CreateAccountOverlay> {
+  final fullnamectr = TextEditingController();
+  final emailctr = TextEditingController();
+  final passwordctr = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () => Navigator.of(context).pop(),
       child: DraggableScrollableSheet(
-        initialChildSize: 0.75,
-        minChildSize: 0.4,
+        initialChildSize: 0.9,
+        minChildSize: 0.65,
         builder: (_, controller) => Container(
           clipBehavior: Clip.hardEdge,
           decoration: BoxDecoration(
-            color: Theme.of(context).scaffoldBackgroundColor,
+            color: Theme.of(context).bottomAppBarTheme.color,
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
@@ -30,6 +41,8 @@ class LoginOverlay extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
           child: ListView(
             controller: controller,
+            // mainAxisSize: MainAxisSize.min,
+            // crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 16, 0, 4),
@@ -37,7 +50,7 @@ class LoginOverlay extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text(
-                      "Log in",
+                      "Create an account",
                       style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.w700,
@@ -53,30 +66,50 @@ class LoginOverlay extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 32),
-              const InputField(
+              InputField(
+                label: "Full Name",
+                placeholder: "Jhon Doe",
+                keyboard: TextInputType.name,
+                controller: fullnamectr,
+              ),
+              InputField(
                 label: "E-mail",
                 placeholder: "someone@example.com",
                 keyboard: TextInputType.emailAddress,
+                controller: emailctr,
               ),
-              const InputField(
+              InputField(
                 label: "Password",
                 placeholder: "•••••••••••••",
                 password: true,
+                controller: passwordctr,
               ),
               const SizedBox(height: 8),
               PrimaryButton(
                 buttonTitle: "Continue",
-                onPressed: () {
+                onPressed: () async {
+                  var response = await Dio().post(
+                    'https://insync-backend-2022.herokuapp.com/user/register',
+                    data: {
+                      'email': emailctr.text,
+                      'name': fullnamectr.text,
+                      'pwd': passwordctr.text,
+                      'provider': "local",
+                    },
+                  );
+                  // var data = json.decode(response.data);
+                  // print(data.toString());
+                  // Constants.updateUserToken(response.data.tokens.token);
                   Constants.loginPref();
                   Constants.retrieveAuthPref();
-                  Navigator.pushNamed(context, '/mainapp');
+                  Navigator.of(context).pushNamed("/interests");
                 },
               ),
               const SizedBox(height: 8),
               const DividingOr(),
               const SizedBox(height: 8),
               PrimaryButton(
-                buttonTitle: "Log in with google",
+                buttonTitle: "Continue with google",
                 onPressed: () {},
                 imageLeft: const Image(
                   image: AssetImage('assets/google.png'),
@@ -87,7 +120,7 @@ class LoginOverlay extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               PrimaryButton(
-                buttonTitle: "Log in with facebook",
+                buttonTitle: "Continue with facebook",
                 onPressed: () {},
                 bgColor: Colors.white,
                 imageLeft:
@@ -97,7 +130,7 @@ class LoginOverlay extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               PrimaryButton(
-                buttonTitle: "New here? create an account",
+                buttonTitle: "Already have an account? log in",
                 onPressed: () {
                   Navigator.pop(context);
                   showModalBottomSheet<void>(
@@ -105,7 +138,7 @@ class LoginOverlay extends StatelessWidget {
                     isScrollControlled: true,
                     backgroundColor: Colors.transparent,
                     builder: (BuildContext context) {
-                      return const CreateAccountOverlay();
+                      return const LoginOverlay();
                     },
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
@@ -116,6 +149,14 @@ class LoginOverlay extends StatelessWidget {
                 },
                 bgColor: Colors.white,
                 textColor: const Color(0xffBD3A4A),
+              ),
+              const SizedBox(height: 4),
+              const Text(
+                "by signing up, you agree to our privacy policy and T&C",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 11,
+                ),
               ),
               const SizedBox(height: 16),
             ],

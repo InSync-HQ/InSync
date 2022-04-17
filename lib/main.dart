@@ -1,32 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:insync/utils/constants.dart';
 import 'package:flutter/services.dart';
-// import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:insync/view/app_structure.dart';
-import 'package:insync/view/authorization.dart';
+import 'package:insync/view/auth/authorization.dart';
 import 'package:insync/utils/theme_config.dart';
+import 'package:insync/view/community/discover_community.dart';
+import 'package:insync/view/forum/forum.dart';
+import 'package:insync/view/forum/forum_detail.dart';
+import 'package:insync/view/interest%20selection/selectinterest.dart';
 import 'package:insync/view/profile/aboutus.dart';
 import 'package:insync/view/profile/edit_profile.dart';
 import 'package:insync/view/splash.dart';
 import 'dart:async';
-
-import 'package:provider/provider.dart';
 import 'package:stacked_themes/stacked_themes.dart';
+import 'package:dio/dio.dart';
 
 Future main() async {
   await ThemeManager.initialise();
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  // runApp(
-  //   MultiProvider(
-  //     providers: [
-  //       ChangeNotifierProvider(create: (_) => ThemeNotifier()),
-  //     ],
-  //     child: const MyApp(),
-  //   ),
-  // );
   runApp(const MyApp());
 }
 
@@ -47,32 +40,6 @@ class _MyAppState extends State<MyApp> {
     super.initState();
   }
 
-  // void initialization() async {
-  //   if (await Constants.retrievethemePref() == null) {
-  //     print("null call");
-  //     theme = 1;
-  //   } else {
-  //     theme = await Constants.retrievethemePref();
-  //   }
-  //   print("Theme number is: ");
-  //   print(theme);
-  //   if (theme == 1) {
-  //     setState(() {
-  //       thememode = ThemeMode.system;
-  //     });
-  //   }
-  //   if (theme == 2) {
-  //     setState(() {
-  //       thememode = ThemeMode.light;
-  //     });
-  //   }
-  //   if (theme == 3) {
-  //     setState(() {
-  //       thememode = ThemeMode.dark;
-  //     });
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return ThemeBuilder(
@@ -88,12 +55,18 @@ class _MyAppState extends State<MyApp> {
             '/mainapp': (context) => const MainApp(),
             '/editprofile': (context) => const EditProfile(),
             '/aboutus': (context) => const AboutUs(),
+            '/discover': (context) => const DiscoverCommunity(),
+            '/forum': (BuildContext context) => const ForumPage(),
+            '/forum/1': (BuildContext context) => const ForumDetailPage(),
+            '/interests': (BuildContext context) => const Addinterests(),
+
           },
           title: 'InSync',
           theme: lightTheme,
           darkTheme: darkTheme,
           themeMode: themeMode,
           home: const InSync(),
+          debugShowCheckedModeBanner: false,
           // themeMode: Provider.of<ThemeNotifier>(context).currentTheme,
         );
       },
@@ -123,6 +96,9 @@ class _InSyncState extends State<InSync> {
       Navigator.pushNamed(context, '/mainapp');
     } else {
       Navigator.pushNamed(context, '/authorization');
+      // Navigator.of(context).push(
+      //   MaterialPageRoute(builder: (context) => const Addinterests()),
+      // );
     }
   }
 

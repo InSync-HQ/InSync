@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:insync/view/community.dart';
+import 'package:insync/view/community/community.dart';
+import 'package:insync/view/home/home.dart';
 import 'package:insync/view/profile/profile.dart';
 import 'package:insync/widgets/bottom_nav_bar.dart';
 /*
@@ -19,7 +20,7 @@ class _MainAppState extends State<MainApp> {
   final PageController _pageController = PageController(initialPage: 0);
   //add widgets of all relevant screens here
   final List<Widget> _children = [
-    const Home(),
+    const HomePage(),
     const Community(),
     const Profile(),
   ];
@@ -47,17 +48,6 @@ class _MainAppState extends State<MainApp> {
       // bottom navbar
       bottomNavigationBar:
           buildBottomNavigationBar(context, onTabTapped, _currentIndex),
-    );
-  }
-}
-
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Home"),
     );
   }
 }

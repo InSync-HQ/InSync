@@ -54,4 +54,10 @@ class Constants {
     prefs = await SharedPreferences.getInstance();
     prefs.remove(key);
   }
+
+  static updateUserToken(String token) async {
+    late SharedPreferences prefs;
+    prefs = await SharedPreferences.getInstance();
+    prefs.setString('token', token);
+  }
 }

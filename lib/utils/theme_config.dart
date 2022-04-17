@@ -35,7 +35,8 @@ List<ThemeData> getThemes() {
 ThemeData lighttheme = ThemeData(
   visualDensity: VisualDensity.adaptivePlatformDensity,
   cardTheme: const CardTheme(
-    shadowColor: Color(0x1100d2ff),
+    shadowColor: Color.fromARGB(42, 24, 35, 37),
+    clipBehavior: Clip.hardEdge,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.all(Radius.circular(20)),
     ),
@@ -69,7 +70,11 @@ ThemeData lighttheme = ThemeData(
     foregroundColor: Color(0xFF1A1A1A),
     backgroundColor: Colors.white,
     elevation: 0,
-    systemOverlayStyle: SystemUiOverlayStyle.dark,
+    systemOverlayStyle: SystemUiOverlayStyle(
+      statusBarColor: Colors.white,
+      statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
+      statusBarBrightness: Brightness.light, // For iOS (dark icons)
+    ),
     iconTheme: IconThemeData(
       color: Colors.black,
     ),
@@ -92,9 +97,9 @@ ThemeData lighttheme = ThemeData(
   fontFamily: 'General Sans',
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
     elevation: 0,
-    backgroundColor: Color(0xff2dadc2),
+    backgroundColor: Color(0xffFD4C62),
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(20)),
+      borderRadius: BorderRadius.all(Radius.circular(16)),
     ),
     foregroundColor: Colors.white,
   ),
@@ -109,10 +114,10 @@ ThemeData darktheme = ThemeData(
   brightness: Brightness.dark,
   visualDensity: VisualDensity.adaptivePlatformDensity,
   cardTheme: const CardTheme(
-    shadowColor: Color(0x1100d2ff),
+    color: Color(0xff1a1a1a),
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(20)),
-    ),
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+        side: BorderSide(color: Color(0xff111111), width: 2)),
     elevation: 10,
   ),
   listTileTheme: const ListTileThemeData(iconColor: Colors.white),
@@ -138,15 +143,19 @@ ThemeData darktheme = ThemeData(
     ),
   ),
   bottomAppBarTheme: const BottomAppBarTheme(
-    color: Colors.white,
+    color: Color(0xFF0E0E0E),
     elevation: 0,
   ),
   //done
   appBarTheme: const AppBarTheme(
     foregroundColor: Colors.white,
-    backgroundColor: Color(0xFF1A1A1A),
+    backgroundColor: Color(0xFF0E0E0E),
     elevation: 0,
-    systemOverlayStyle: SystemUiOverlayStyle.light,
+    systemOverlayStyle: SystemUiOverlayStyle(
+      statusBarColor: Color(0xff0e0e0e),
+      statusBarIconBrightness: Brightness.light, // For Android (dark icons)
+      statusBarBrightness: Brightness.dark, // For iOS (dark icons)
+    ),
     iconTheme: IconThemeData(
       color: Colors.white,
     ),
@@ -169,16 +178,16 @@ ThemeData darktheme = ThemeData(
   fontFamily: 'General Sans',
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
     elevation: 0,
-    backgroundColor: Color(0xff2dadc2),
+    backgroundColor: Color(0xffFD4C62),
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(20)),
+      borderRadius: BorderRadius.all(Radius.circular(16)),
     ),
     foregroundColor: Colors.white,
   ),
   //done
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    backgroundColor: Colors.grey.shade900,
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    backgroundColor: Color(0xFF0E0E0E),
     elevation: 0,
-    selectedItemColor: const Color(0xff2dadc2),
+    selectedItemColor: Color(0xff2dadc2),
   ),
 );
