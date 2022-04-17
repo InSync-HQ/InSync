@@ -72,7 +72,9 @@ class CreateAccountOverlay extends StatelessWidget {
               const SizedBox(height: 8),
               PrimaryButton(
                 buttonTitle: "Continue",
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed("/interests");
+                },
               ),
               const SizedBox(height: 8),
               const DividingOr(),
