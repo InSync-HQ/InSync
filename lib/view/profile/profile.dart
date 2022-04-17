@@ -64,9 +64,12 @@ class _ProfileState extends State<Profile> {
               Navigator.of(context).pushNamed("/editprofile");
             },
           ),
-          const ProfileTile(
+          ProfileTile(
             title: "Change Intrests",
             leadIcon: FeatherIcons.edit2,
+            onTap: () {
+              Navigator.of(context).pushNamed("/changeinterests");
+            },
           ),
           ListTile(
             horizontalTitleGap: 0,
