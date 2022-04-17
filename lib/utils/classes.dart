@@ -37,3 +37,13 @@ class CommunityCategoryClass {
     required this.title,
   });
 }
+
+class MessageDataClass {
+  final String username;
+  final String hours;
+  final String text;
+  final String imgURL;
+
+  MessageDataClass(this.username, this.hours, this.text,
+      {required this.imgURL});
+}

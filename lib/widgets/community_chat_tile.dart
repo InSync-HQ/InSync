@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:insync/view/forum/forum_detail.dart';
+import 'package:insync/view/community/chat/chat_page.dart';
 
 class CommunityChatTile extends StatelessWidget {
   const CommunityChatTile({
