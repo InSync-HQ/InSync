@@ -1,14 +1,26 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:insync/utils/constants.dart';
 import 'package:insync/view/auth/login_overlay.dart';
 import 'package:insync/widgets/button.dart';
 import 'package:insync/widgets/dividing_or.dart';
 import 'package:insync/widgets/input_field.dart';
 
-class CreateAccountOverlay extends StatelessWidget {
+class CreateAccountOverlay extends StatefulWidget {
   const CreateAccountOverlay({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<CreateAccountOverlay> createState() => _CreateAccountOverlayState();
+}
+
+class _CreateAccountOverlayState extends State<CreateAccountOverlay> {
+  final fullnamectr = TextEditingController();
+  final emailctr = TextEditingController();
+  final passwordctr = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -54,25 +66,42 @@ class CreateAccountOverlay extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 32),
-              const InputField(
+              InputField(
                 label: "Full Name",
                 placeholder: "Jhon Doe",
                 keyboard: TextInputType.name,
+                controller: fullnamectr,
               ),
-              const InputField(
+              InputField(
                 label: "E-mail",
                 placeholder: "someone@example.com",
                 keyboard: TextInputType.emailAddress,
+                controller: emailctr,
               ),
-              const InputField(
+              InputField(
                 label: "Password",
                 placeholder: "•••••••••••••",
                 password: true,
+                controller: passwordctr,
               ),
               const SizedBox(height: 8),
               PrimaryButton(
                 buttonTitle: "Continue",
-                onPressed: () {
+                onPressed: () async {
+                  var response = await Dio().post(
+                    'https://insync-backend-2022.herokuapp.com/user/register',
+                    data: {
+                      'email': emailctr.text,
+                      'name': fullnamectr.text,
+                      'pwd': passwordctr.text,
+                      'provider': "local",
+                    },
+                  );
+                  // var data = json.decode(response.data);
+                  // print(data.toString());
+                  // Constants.updateUserToken(response.data.tokens.token);
+                  Constants.loginPref();
+                  Constants.retrieveAuthPref();
                   Navigator.of(context).pushNamed("/interests");
                 },
               ),
