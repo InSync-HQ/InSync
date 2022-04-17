@@ -56,7 +56,6 @@ class _MyAppState extends State<MyApp> {
             '/discover': (context) => const DiscoverCommunity(),
             '/interests': (BuildContext context) => const Addinterests(),
             '/changeinterests': (BuildContext context) => const ChangeInterests(),
-
           },
           title: 'InSync',
           theme: lightTheme,
