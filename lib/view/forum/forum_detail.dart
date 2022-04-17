@@ -31,6 +31,7 @@ var forumPostArr = [
 ];
 
 class _ForumDetailPageState extends State<ForumDetailPage> {
+  final messagectr = TextEditingController();
   @override
   Widget build(BuildContext context) {
     var responses = Container(
@@ -68,17 +69,23 @@ class _ForumDetailPageState extends State<ForumDetailPage> {
                       decoration: const InputDecoration(
                         hintText: "type a message...",
                       ),
+                      controller: messagectr,
                     ),
                   ),
                 ),
-                CircleAvatar(
-                  radius: 24,
-                  backgroundColor: Theme.of(context).colorScheme.secondary,
-                  child: const IconButton(
-                    onPressed: null,
-                    icon: Icon(
-                      FeatherIcons.send,
-                      color: Colors.white,
+                GestureDetector(
+                  onTap: () {
+                    var message = messagectr.text;
+                  },
+                  child: CircleAvatar(
+                    radius: 24,
+                    backgroundColor: Theme.of(context).colorScheme.secondary,
+                    child: const IconButton(
+                      onPressed: null,
+                      icon: Icon(
+                        FeatherIcons.send,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
