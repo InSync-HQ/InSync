@@ -5,6 +5,9 @@ import 'package:insync/view/app_structure.dart';
 import 'package:insync/view/auth/authorization.dart';
 import 'package:insync/utils/theme_config.dart';
 import 'package:insync/view/community/discover_community.dart';
+import 'package:insync/view/forum/forum.dart';
+import 'package:insync/view/forum/forum_detail.dart';
+import 'package:insync/view/interest%20selection/selectinterest.dart';
 import 'package:insync/view/profile/aboutus.dart';
 import 'package:insync/view/profile/edit_profile.dart';
 import 'package:insync/view/splash.dart';
@@ -53,6 +56,10 @@ class _MyAppState extends State<MyApp> {
             '/editprofile': (context) => const EditProfile(),
             '/aboutus': (context) => const AboutUs(),
             '/discover': (context) => const DiscoverCommunity(),
+            '/forum': (BuildContext context) => const ForumPage(),
+            '/forum/1': (BuildContext context) => const ForumDetailPage(),
+            '/interests': (BuildContext context) => const Addinterests(),
+
           },
           title: 'InSync',
           theme: lightTheme,
@@ -89,6 +96,9 @@ class _InSyncState extends State<InSync> {
       Navigator.pushNamed(context, '/mainapp');
     } else {
       Navigator.pushNamed(context, '/authorization');
+      // Navigator.of(context).push(
+      //   MaterialPageRoute(builder: (context) => const Addinterests()),
+      // );
     }
   }
 

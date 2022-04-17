@@ -80,6 +80,7 @@ class _CommunityState extends State<Community> {
               ],
             ),
             if (1 == 0)
+              // Empty State
               Column(
                 children: const [
                   SizedBox(height: 64),

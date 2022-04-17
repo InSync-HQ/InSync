@@ -102,7 +102,7 @@ class _CreateAccountOverlayState extends State<CreateAccountOverlay> {
                   // Constants.updateUserToken(response.data.tokens.token);
                   Constants.loginPref();
                   Constants.retrieveAuthPref();
-                  Navigator.pushNamed(context, '/mainapp');
+                  Navigator.of(context).pushNamed("/interests");
                 },
               ),
               const SizedBox(height: 8),
