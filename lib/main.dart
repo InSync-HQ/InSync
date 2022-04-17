@@ -6,6 +6,8 @@ import 'package:insync/view/app_structure.dart';
 import 'package:insync/view/auth/authorization.dart';
 import 'package:insync/utils/theme_config.dart';
 import 'package:insync/view/community/discover_community.dart';
+import 'package:insync/view/forum/forum.dart';
+import 'package:insync/view/forum/forum_detail.dart';
 import 'package:insync/view/profile/aboutus.dart';
 import 'package:insync/view/profile/edit_profile.dart';
 import 'package:insync/view/splash.dart';
@@ -88,6 +90,8 @@ class _MyAppState extends State<MyApp> {
             '/editprofile': (context) => const EditProfile(),
             '/aboutus': (context) => const AboutUs(),
             '/discover': (context) => const DiscoverCommunity(),
+            '/forum': (BuildContext context) => const ForumPage(),
+            '/forum/1': (BuildContext context) => const ForumDetailPage(),
           },
           title: 'InSync',
           theme: lightTheme,

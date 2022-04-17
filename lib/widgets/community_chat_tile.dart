@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:insync/view/forum/forum_detail.dart';
 
 class CommunityChatTile extends StatelessWidget {
   const CommunityChatTile({
@@ -17,6 +18,15 @@ class CommunityChatTile extends StatelessWidget {
         Container(
           margin: const EdgeInsets.only(top: 8),
           child: ListTile(
+            onTap: (() {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const ForumDetailPage();
+                  },
+                ),
+              );
+            }),
             style: ListTileStyle.drawer,
             leading: CircleAvatar(
               radius: 24,
