@@ -32,7 +32,7 @@ class _AddinterestsState extends State<Addinterests> {
                   child: ListView.builder(
                     itemCount: 17,
                     itemBuilder: (context, index) {
-                      return InterestTile(title: "siddhu", emoji: "🤦‍♀️");
+                      return const InterestTile(title: "siddhu", emoji: "🤦‍♀️");
                     },
                   ),
                 ),
@@ -45,7 +45,7 @@ class _AddinterestsState extends State<Addinterests> {
               SizedBox(
                 height: 64,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.0),
+                  padding:const EdgeInsets.symmetric(horizontal: 16.0),
                   child: PrimaryButton(
                       buttonTitle: "Continue",
                       onPressed: () {
@@ -53,7 +53,7 @@ class _AddinterestsState extends State<Addinterests> {
                       }),
                 ),
               ),
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
             ],
           ),
         ],
