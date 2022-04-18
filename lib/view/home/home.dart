@@ -7,6 +7,7 @@ import 'package:insync/utils/classes.dart';
 import 'package:insync/utils/theme_config.dart';
 import 'package:insync/view/home/article_page.dart';
 import 'package:insync/widgets/news_card.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tcard/tcard.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,10 +18,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List communitiesarr = [];
   @override
   void initState() {
     super.initState();
     initializeNewsFeed();
+    initalizeCommunities();
   }
 
   void initializeNewsFeed() async {
@@ -36,6 +39,24 @@ class _HomePageState extends State<HomePage> {
               desc: response.data["articles"][index]["content"],
               imgURL: response.data["articles"][index]["urlToImage"]),
         );
+      });
+    } catch (err) {
+      print(err.toString() + " 👉👉 you have some error");
+    }
+  }
+
+  void initalizeCommunities() async {
+    try {
+      late SharedPreferences prefs;
+      prefs = await SharedPreferences.getInstance();
+      print(prefs.getString("jwt"));
+      Response response = await Dio().get(
+          "https://insync-backend-2022.herokuapp.com/community/fetchAll",
+          options: Options(headers: {"Authorization": prefs.getString("jwt")}));
+      print("🍩🍩🍩");
+      print(response.data.toString());
+      setState(() {
+        communitiesarr = response.data["communties"];
       });
     } catch (err) {
       print(err.toString() + " 👉👉 you have some error");
@@ -63,7 +84,7 @@ class _HomePageState extends State<HomePage> {
               height: 40,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: 10,
+                itemCount: communitiesarr.length,
                 itemBuilder: (context, index) {
                   return customChip(index);
                 },
@@ -72,8 +93,8 @@ class _HomePageState extends State<HomePage> {
           ),
           const SizedBox(height: 12),
           Center(
-            child: newsarr.length == 0
-                ? CircularProgressIndicator()
+            child: newsarr.isEmpty
+                ? const CircularProgressIndicator()
                 : TCard(
                     cards: cardFunc(context, newsarr),
                     size: Size(
@@ -113,7 +134,7 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: (currentIndex == index)
               ? Colors.black
               : lighttheme.scaffoldBackgroundColor,
-          label: const Text('Your feed'),
+          label: Text(communitiesarr[index]["name"]),
           labelStyle: TextStyle(
             color: (currentIndex == index) ? Colors.white : Colors.black,
           ),

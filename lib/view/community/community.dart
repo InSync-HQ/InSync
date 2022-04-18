@@ -132,9 +132,9 @@ class _CommunityState extends State<Community> {
             else
               Expanded(
                 child: ListView.builder(
-                  itemCount: 20,
+                  itemCount: communitiesarr.length,
                   itemBuilder: (context, index) => CommunityChatTile(
-                    communityName: "Hayat's Community",
+                    communityName: communitiesarr[index]["name"],
                     imgURL:
                         "https://picsum.photos/seed/${Random().nextInt(100)}/300/300",
                   ),

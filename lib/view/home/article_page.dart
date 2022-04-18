@@ -23,39 +23,39 @@ class ArticlePage extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width / 1.2,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: TextFormField(
-                        decoration: const InputDecoration(
-                          hintText: "Comment something...",
-                        ),
-                        controller: null,
-                      ),
-                    ),
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 1.2,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: TextFormField(
+                  decoration: const InputDecoration(
+                    hintText: "Comment something...",
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      var message = null;
-                    },
-                    child: CircleAvatar(
-                      radius: 24,
-                      backgroundColor: Theme.of(context).colorScheme.secondary,
-                      child: const IconButton(
-                        onPressed: null,
-                        icon: Icon(
-                          Icons.send,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                  controller: null,
+                ),
               ),
+            ),
+            GestureDetector(
+              onTap: () {
+                var message = null;
+              },
+              child: CircleAvatar(
+                radius: 24,
+                backgroundColor: Theme.of(context).colorScheme.secondary,
+                child: const IconButton(
+                  onPressed: null,
+                  icon: Icon(
+                    Icons.send,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
       body: NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) {
@@ -103,7 +103,7 @@ class ArticlePage extends StatelessWidget {
                 child: Row(
                   children: [
                     SizedBox(
-                      child: Image.asset('fire.png'),
+                      child: Image.asset('assets/fire.png'),
                       height: 20,
                       width: 20,
                     ),
