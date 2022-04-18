@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
@@ -40,7 +41,9 @@ class _CreateCommunityOverlayState extends State<CreateCommunityOverlay> {
       .map((intrest) => MultiSelectItem<Intrest>(intrest, intrest.name))
       .toList();
   List<Intrest> _selectedIntrests = [];
-  // final _multiSelectKey = GlobalKey<FormFieldState>();
+  final communitynamectr = TextEditingController();
+  final descctr = TextEditingController();
+  String visibilityVal = 'Private';
 
   @override
   void initState() {
@@ -49,7 +52,6 @@ class _CreateCommunityOverlayState extends State<CreateCommunityOverlay> {
   }
 
   bool isSwitched = false;
-  String visibilityVal = 'Private';
   void toggleSwitch(bool value) {
     if (isSwitched == false) {
       setState(() {
@@ -119,10 +121,11 @@ class _CreateCommunityOverlayState extends State<CreateCommunityOverlay> {
                 border: const BorderSide(color: Color(0xff2561ED), width: 2),
               ),
               const SizedBox(height: 8),
-              const InputField(
+              InputField(
                 label: "Community name",
                 placeholder: "Your community's name",
                 keyboard: TextInputType.name,
+                controller: communitynamectr,
               ),
               Text(
                 "Intrest topics",
@@ -190,10 +193,11 @@ class _CreateCommunityOverlayState extends State<CreateCommunityOverlay> {
                   },
                 ),
               ),
-              const InputField(
+              InputField(
                 label: "Description",
                 placeholder: "About your community",
                 textArea: true,
+                controller: descctr,
               ),
               const SizedBox(height: 8),
               Row(
@@ -228,7 +232,15 @@ class _CreateCommunityOverlayState extends State<CreateCommunityOverlay> {
               const SizedBox(height: 8),
               PrimaryButton(
                 buttonTitle: "Continue",
-                onPressed: () {},
+                onPressed: () async {
+                  Response response = await Dio().post(
+                    "https://insync-backend-2022.herokuapp.com/community/new",
+                    data: {
+                      "name": communitynamectr.text,
+                      "desc": descctr.text,
+                    },
+                  );
+                },
               ),
               const SizedBox(height: 16),
             ],

@@ -1,11 +1,16 @@
+// ignore_for_file: avoid_print
+
 import 'dart:math';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:insync/utils/constants.dart';
 import 'package:insync/view/community/create_community_overlay.dart';
 import 'package:insync/widgets/button.dart';
 import 'package:insync/widgets/community_chat_tile.dart';
 import 'package:insync/widgets/input_field.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Community extends StatefulWidget {
   const Community({
@@ -17,6 +22,32 @@ class Community extends StatefulWidget {
 }
 
 class _CommunityState extends State<Community> {
+  List communitiesarr = [];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    initalizeCommunities();
+  }
+
+  void initalizeCommunities() async {
+    try {
+      late SharedPreferences prefs;
+      prefs = await SharedPreferences.getInstance();
+      print(prefs.getString("jwt"));
+      Response response = await Dio().get(
+          "https://insync-backend-2022.herokuapp.com/community/fetchAll",
+          options: Options(headers: {"Authorization": prefs.getString("jwt")}));
+      print("🍩🍩🍩");
+      print(response.data.toString());
+      setState(() {
+        communitiesarr = response.data["communties"];
+      });
+    } catch (err) {
+      print(err.toString() + " 👉👉 you have some error");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,7 +110,7 @@ class _CommunityState extends State<Community> {
                 ),
               ],
             ),
-            if (1 == 0)
+            if (communitiesarr.isEmpty)
               // Empty State
               Column(
                 children: const [

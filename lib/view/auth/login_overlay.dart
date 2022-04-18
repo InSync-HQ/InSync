@@ -97,7 +97,7 @@ class _LoginOverlayState extends State<LoginOverlay> {
                       print("🍩🍩");
                       print(myJwt);
                       // print(response.data["tokens"]["token"]);
-                      Constants.loginPref();
+                      await Constants.loginPref(myJwt!);
                       Constants.retrieveAuthPref();
                       Navigator.pushNamed(context, '/mainapp');
                     }
