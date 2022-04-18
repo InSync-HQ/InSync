@@ -5,6 +5,7 @@ import 'package:insync/view/app_structure.dart';
 import 'package:insync/view/auth/authorization.dart';
 import 'package:insync/utils/theme_config.dart';
 import 'package:insync/view/community/discover_community.dart';
+import 'package:insync/view/home/onboarding.dart';
 import 'package:insync/view/onboarding/selectinterest.dart';
 import 'package:insync/view/profile/aboutus.dart';
 import 'package:insync/view/profile/change_intrests.dart';
@@ -56,6 +57,10 @@ class _MyAppState extends State<MyApp> {
             '/discover': (context) => const DiscoverCommunity(),
             '/interests': (BuildContext context) => const Addinterests(),
             '/changeinterests': (BuildContext context) => const ChangeInterests(),
+            '/onboarding/1': (BuildContext context) => const Onboardingpage1(),
+            '/onboarding/2': (BuildContext context) => const Onboardingpage2(),
+            '/onboarding/3': (BuildContext context) => const Onboardingpage3(),
+            
           },
           title: 'InSync',
           theme: lightTheme,
@@ -93,7 +98,7 @@ class _InSyncState extends State<InSync> {
     } else {
       Navigator.pushNamed(context, '/authorization');
       // Navigator.of(context).push(
-      //   MaterialPageRoute(builder: (context) => const Addinterests()),
+      //   MaterialPageRoute(builder: (context) => const Onboarding()),
       // );
     }
   }

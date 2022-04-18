@@ -108,7 +108,7 @@ class _CreateAccountOverlayState extends State<CreateAccountOverlay> {
                   final myJwt = await storage.read(key: "jwt");
                   await Constants.loginPref(myJwt!);
                   Constants.retrieveAuthPref();
-                  Navigator.of(context).pushNamed("/interests");
+                  Navigator.of(context).pushNamed("/onboarding/1");
                 },
               ),
               const SizedBox(height: 8),
@@ -116,7 +116,9 @@ class _CreateAccountOverlayState extends State<CreateAccountOverlay> {
               const SizedBox(height: 8),
               PrimaryButton(
                 buttonTitle: "Continue with google",
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed("/onboarding/1");
+                },
                 imageLeft: const Image(
                   image: AssetImage('assets/google.png'),
                   width: 26,
