@@ -96,10 +96,10 @@ class _InSyncState extends State<InSync> {
     if (auth == true) {
       Navigator.pushNamed(context, '/mainapp');
     } else {
-      // Navigator.pushNamed(context, '/authorization');
-      Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => const Onboarding()),
-      );
+      Navigator.pushNamed(context, '/authorization');
+      // Navigator.of(context).push(
+      //   MaterialPageRoute(builder: (context) => const Onboarding()),
+      // );
     }
   }
 

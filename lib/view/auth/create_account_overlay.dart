@@ -100,7 +100,7 @@ class _CreateAccountOverlayState extends State<CreateAccountOverlay> {
                   // Constants.updateUserToken(response.data.tokens.token);
                   Constants.loginPref();
                   Constants.retrieveAuthPref();
-                  Navigator.of(context).pushNamed("/interests");
+                  Navigator.of(context).pushNamed("/onboarding/1");
                 },
               ),
               const SizedBox(height: 8),
@@ -108,7 +108,9 @@ class _CreateAccountOverlayState extends State<CreateAccountOverlay> {
               const SizedBox(height: 8),
               PrimaryButton(
                 buttonTitle: "Continue with google",
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed("/onboarding/1");
+                },
                 imageLeft: const Image(
                   image: AssetImage('assets/google.png'),
                   width: 26,
