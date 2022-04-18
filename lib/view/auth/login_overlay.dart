@@ -76,17 +76,24 @@ class _LoginOverlayState extends State<LoginOverlay> {
               const SizedBox(height: 8),
               PrimaryButton(
                 buttonTitle: "Continue",
-                onPressed: () {
-                  var response = Dio().post(
-                      'https://insync-backend-2022.herokuapp.com/user/login',
-                      data: {
-                        'email': emailctr.text,
-                        'provider': 'local',
-                        'pwd': passwordctr.text
-                      });
-                  Constants.loginPref();
-                  Constants.retrieveAuthPref();
-                  Navigator.pushNamed(context, '/mainapp');
+                onPressed: () async {
+                  try {
+                    Response response = await Dio().post(
+                        'https://insync-backend-2022.herokuapp.com/user/login',
+                        data: {
+                          'email': emailctr.text,
+                          'provider': 'local',
+                          'pwd': passwordctr.text
+                        });
+                    if (response.statusCode == 200) {
+                      Constants.loginPref();
+                      Constants.retrieveAuthPref();
+                      Navigator.pushNamed(context, '/mainapp');
+                    }
+                  } catch (err) {
+                    // ignore: avoid_print
+                    print(err.toString() + "👉👉 you have some error");
+                  }
                 },
               ),
               const SizedBox(height: 8),
