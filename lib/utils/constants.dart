@@ -55,6 +55,7 @@ class Constants {
     prefs = await SharedPreferences.getInstance();
     prefs.remove(key);
   }
+
   static retrievePref(String key) async {
     late SharedPreferences prefs;
     prefs = await SharedPreferences.getInstance();

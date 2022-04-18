@@ -56,11 +56,11 @@ class _MyAppState extends State<MyApp> {
             '/aboutus': (context) => const AboutUs(),
             '/discover': (context) => const DiscoverCommunity(),
             '/interests': (BuildContext context) => const Addinterests(),
-            '/changeinterests': (BuildContext context) => const ChangeInterests(),
+            '/changeinterests': (BuildContext context) =>
+                const ChangeInterests(),
             '/onboarding/1': (BuildContext context) => const Onboardingpage1(),
             '/onboarding/2': (BuildContext context) => const Onboardingpage2(),
             '/onboarding/3': (BuildContext context) => const Onboardingpage3(),
-            
           },
           title: 'InSync',
           theme: lightTheme,

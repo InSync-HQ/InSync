@@ -6,6 +6,7 @@ import 'package:insync/widgets/button.dart';
 import 'package:insync/widgets/input_field.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Intrest {
   final int? id;
@@ -233,13 +234,25 @@ class _CreateCommunityOverlayState extends State<CreateCommunityOverlay> {
               PrimaryButton(
                 buttonTitle: "Continue",
                 onPressed: () async {
-                  Response response = await Dio().post(
-                    "https://insync-backend-2022.herokuapp.com/community/new",
-                    data: {
-                      "name": communitynamectr.text,
-                      "desc": descctr.text,
-                    },
-                  );
+                  try {
+                    late SharedPreferences prefs;
+                    prefs = await SharedPreferences.getInstance();
+                    Response response = await Dio().post(
+                      "https://insync-backend-2022.herokuapp.com/community/new",
+                      data: {
+                        "name": communitynamectr.text,
+                        "desc": descctr.text,
+                        "mod_id": "625d0bcdf56922d8c32a1dbb",
+                        // "interests": _selectedIntrests,
+                      },
+                      options: Options(
+                        headers: {"Authorization": prefs.getString("jwt")},
+                      ),
+                    );
+                    Navigator.of(context).pop();
+                  } catch (err) {
+                    print(err.toString() + " 👉👉 you have some error");
+                  }
                 },
               ),
               const SizedBox(height: 16),
