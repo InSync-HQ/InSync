@@ -6,11 +6,18 @@ import 'package:insync/widgets/button.dart';
 import 'package:insync/widgets/dividing_or.dart';
 import 'package:insync/widgets/input_field.dart';
 
-class LoginOverlay extends StatelessWidget {
+class LoginOverlay extends StatefulWidget {
   const LoginOverlay({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<LoginOverlay> createState() => _LoginOverlayState();
+}
+
+class _LoginOverlayState extends State<LoginOverlay> {
+  final emailctr = TextEditingController();
+  final passwordctr = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -54,25 +61,39 @@ class LoginOverlay extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 32),
-              const InputField(
+              InputField(
                 label: "E-mail",
                 placeholder: "someone@example.com",
                 keyboard: TextInputType.emailAddress,
+                controller: emailctr,
               ),
-              const InputField(
+              InputField(
                 label: "Password",
                 placeholder: "•••••••••••••",
                 password: true,
+                controller: passwordctr,
               ),
               const SizedBox(height: 8),
               PrimaryButton(
                 buttonTitle: "Continue",
-                onPressed: () {
-
-                  // var response = Dio().post("");
-                  Constants.loginPref();
-                  Constants.retrieveAuthPref();
-                  Navigator.pushNamed(context, '/mainapp');
+                onPressed: () async {
+                  try {
+                    Response response = await Dio().post(
+                        'https://insync-backend-2022.herokuapp.com/user/login',
+                        data: {
+                          'email': emailctr.text,
+                          'provider': 'local',
+                          'pwd': passwordctr.text
+                        });
+                    if (response.statusCode == 200) {
+                      Constants.loginPref();
+                      Constants.retrieveAuthPref();
+                      Navigator.pushNamed(context, '/mainapp');
+                    }
+                  } catch (err) {
+                    // ignore: avoid_print
+                    print(err.toString() + "👉👉 you have some error");
+                  }
                 },
               ),
               const SizedBox(height: 8),

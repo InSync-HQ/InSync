@@ -4,6 +4,7 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:insync/widgets/button.dart';
 import 'package:insync/widgets/input_field.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Intrest {
   final int? id;
@@ -109,7 +110,10 @@ class _CreateCommunityOverlayState extends State<CreateCommunityOverlay> {
               PrimaryButton(
                 buttonTitle: "Upload community image",
                 iconLeft: const Icon(FeatherIcons.uploadCloud),
-                onPressed: () {},
+                onPressed: () async {
+                  PickedFile? pickedFile =
+                      await ImagePicker().getImage(source: ImageSource.gallery);
+                },
                 textColor: const Color(0xff2561ED),
                 bgColor: Theme.of(context).scaffoldBackgroundColor,
                 border: const BorderSide(color: Color(0xff2561ED), width: 2),
