@@ -7,10 +7,11 @@ class Constants {
     prefs.setBool(key, value);
   }
 
-  static loginPref() async {
+  static loginPref(String jwt) async {
     late SharedPreferences prefs;
     prefs = await SharedPreferences.getInstance();
     prefs.setBool('auth', true);
+    prefs.setString('jwt', jwt);
   }
 
   static logoutPref() async {
@@ -50,6 +51,11 @@ class Constants {
   }
 
   static deletePref(String key) async {
+    late SharedPreferences prefs;
+    prefs = await SharedPreferences.getInstance();
+    prefs.remove(key);
+  }
+  static retrievePref(String key) async {
     late SharedPreferences prefs;
     prefs = await SharedPreferences.getInstance();
     prefs.remove(key);

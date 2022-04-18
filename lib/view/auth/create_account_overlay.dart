@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:insync/utils/constants.dart';
 import 'package:insync/view/auth/login_overlay.dart';
 import 'package:insync/widgets/button.dart';
@@ -98,7 +99,14 @@ class _CreateAccountOverlayState extends State<CreateAccountOverlay> {
                   // var data = json.decode(response.data);
                   // print(data.toString());
                   // Constants.updateUserToken(response.data.tokens.token);
-                  Constants.loginPref();
+                  // Create storage
+                  final storage = new FlutterSecureStorage();
+
+                  // Write value
+                  await storage.write(
+                      key: 'jwt', value: response.data["tokens"]["token"]);
+                  final myJwt = await storage.read(key: "jwt");
+                  await Constants.loginPref(myJwt!);
                   Constants.retrieveAuthPref();
                   Navigator.of(context).pushNamed("/onboarding/1");
                 },

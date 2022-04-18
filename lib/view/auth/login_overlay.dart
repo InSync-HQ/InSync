@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:insync/utils/constants.dart';
 import 'package:insync/view/auth/create_account_overlay.dart';
 import 'package:insync/widgets/button.dart';
@@ -86,13 +87,23 @@ class _LoginOverlayState extends State<LoginOverlay> {
                           'pwd': passwordctr.text
                         });
                     if (response.statusCode == 200) {
-                      Constants.loginPref();
+                      // Create storage
+                      final storage = new FlutterSecureStorage();
+
+                      // Write value
+                      await storage.write(
+                          key: 'jwt', value: response.data["tokens"]["token"]);
+                      final myJwt = await storage.read(key: "jwt");
+                      print("🍩🍩");
+                      print(myJwt);
+                      // print(response.data["tokens"]["token"]);
+                      await Constants.loginPref(myJwt!);
                       Constants.retrieveAuthPref();
                       Navigator.pushNamed(context, '/mainapp');
                     }
                   } catch (err) {
                     // ignore: avoid_print
-                    print(err.toString() + "👉👉 you have some error");
+                    print(err.toString() + " 👉👉 you have some error");
                   }
                 },
               ),
