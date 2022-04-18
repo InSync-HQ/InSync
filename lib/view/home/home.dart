@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:insync/utils/classes.dart';
 import 'package:insync/utils/theme_config.dart';
@@ -14,6 +15,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    initializeNewsFeed();
+  }
+
+  void initializeNewsFeed() async {
+    try {
+      Response response = await Dio().get(
+          "https://insync-backend-2022.herokuapp.com/news/newsapi/search?q=bitcoin");
+      print(response.data.toString());
+    } catch (err) {
+      // ignore: avoid_print
+      print(err.toString() + " 👉👉 you have some error");
+    }
+  }
+
   int currentIndex = 0;
   List<News> newsarr = <News>[
     News(
@@ -110,62 +128,6 @@ class _HomePageState extends State<HomePage> {
               },
             ),
           ),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //   children: [
-          //     CircleAvatar(
-          //       radius: 25,
-          //       backgroundColor: const Color(0xffecf0f4),
-          //       child: IconButton(
-          //           onPressed: () {
-          //             // Custom Function
-          //           },
-          //           icon: const Icon(
-          //             Icons.arrow_circle_left_outlined,
-          //             color: Colors.grey,
-          //           )),
-          //     ),
-          //     GestureDetector(
-          //       onTap: () {
-          //         // Navigator.of(context).push(
-          //         //   MaterialPageRoute(
-          //         //     builder: (context) {
-          //         //       return const ArticlePage();
-          //         //     },
-          //         //   ),
-          //         // );
-          //       },
-          //       child: const Chip(
-          //         labelPadding: EdgeInsets.all(8),
-          //         label: Text('Read more'),
-          //         backgroundColor: Color(0xffecf0f4),
-          //         labelStyle: TextStyle(
-          //             color: Colors.grey,
-          //             fontSize: 15,
-          //             fontWeight: FontWeight.w800),
-          //       ),
-          //     ),
-          //     CircleAvatar(
-          //       radius: 25,
-          //       backgroundColor: const Color(0xffecf0f4),
-          //       child: IconButton(
-          //         onPressed: () {
-          //           // Navigator.of(context).push(
-          //           //   MaterialPageRoute(
-          //           //     builder: (context) {
-          //           //       return ArticlePage(headline:,);
-          //           //     },
-          //           //   ),
-          //           // );
-          //         },
-          //         icon: const Icon(
-          //           Icons.arrow_circle_right_outlined,
-          //           color: Colors.grey,
-          //         ),
-          //       ),
-          //     )
-          //   ],
-          // ),
         ],
       ),
     );
