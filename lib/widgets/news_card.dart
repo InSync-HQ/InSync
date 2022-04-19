@@ -9,12 +9,14 @@ class NewsCard extends StatelessWidget {
   const NewsCard({
     Key? key,
     required this.headline,
+    required this.articleID,
     required this.news,
     required this.imgURL,
     required this.likes,
     this.interestTags = const [],
   }) : super(key: key);
   final String headline;
+  final String articleID;
   final String news;
   final String imgURL;
   final int likes;
@@ -63,6 +65,7 @@ class NewsCard extends StatelessWidget {
                 NewsActions(
                   likes: likes,
                   headline: headline,
+                  articleID: articleID,
                   imgURL: imgURL,
                   news: news,
                   interestTags: interestTags,
@@ -111,6 +114,7 @@ class NewsActions extends StatelessWidget {
     Key? key,
     required this.likes,
     required this.headline,
+    required this.articleID,
     required this.imgURL,
     required this.news,
     required this.interestTags,
@@ -118,6 +122,7 @@ class NewsActions extends StatelessWidget {
 
   final int likes;
   final String headline;
+  final String articleID;
   final String imgURL;
   final String news;
   final List<InterestTag> interestTags;
@@ -147,6 +152,7 @@ class NewsActions extends StatelessWidget {
                 builder: (context) {
                   return ArticlePage(
                     headline: headline,
+                    articleID: articleID,
                     imgURL: imgURL,
                     news: news,
                     interestTags: interestTags,

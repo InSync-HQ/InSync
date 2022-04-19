@@ -5,7 +5,7 @@ import 'package:insync/view/app_structure.dart';
 import 'package:insync/view/auth/authorization.dart';
 import 'package:insync/utils/theme_config.dart';
 import 'package:insync/view/community/discover_community.dart';
-import 'package:insync/view/home/onboarding.dart';
+import 'package:insync/view/onboarding/onboarding.dart';
 import 'package:insync/view/onboarding/selectinterest.dart';
 import 'package:insync/view/profile/aboutus.dart';
 import 'package:insync/view/profile/change_intrests.dart';

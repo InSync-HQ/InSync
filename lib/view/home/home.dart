@@ -29,19 +29,22 @@ class _HomePageState extends State<HomePage> {
   void initializeNewsFeed() async {
     try {
       Response response = await Dio().get(
-          "https://insync-backend-2022.herokuapp.com/news/newsapi/search?q=ukraine");
+          "https://insync-backend-2022.herokuapp.com/news/newsapi/search?q=sports");
       setState(() {
         newsarr = [];
         newsarr = List.generate(
           response.data["articles"].length,
           (index) => News(
-              headline: response.data["articles"][index]["title"],
-              desc: response.data["articles"][index]["content"],
-              imgURL: response.data["articles"][index]["urlToImage"]),
+            headline: response.data["articles"][index]["title"],
+            desc: response.data["articles"][index]["content"],
+            imgURL: response.data["articles"][index]["urlToImage"],
+            // articleID: response.data["articles"][index]["_id"],
+          ),
         );
       });
     } catch (err) {
-      print(err.toString() + " 👉👉 you have some error");
+      print(err.toString() +
+          " 👉👉 you have some error in home page while generating newsfeed");
     }
   }
 
@@ -49,17 +52,16 @@ class _HomePageState extends State<HomePage> {
     try {
       late SharedPreferences prefs;
       prefs = await SharedPreferences.getInstance();
-      print(prefs.getString("jwt"));
+      print("👉 jwt =" + prefs.getString("jwt")!);
       Response response = await Dio().get(
           "https://insync-backend-2022.herokuapp.com/community/fetchAll",
           options: Options(headers: {"Authorization": prefs.getString("jwt")}));
-      print("🍩🍩🍩");
-      print(response.data.toString());
       setState(() {
         communitiesarr = response.data["communties"];
       });
     } catch (err) {
-      print(err.toString() + " 👉👉 you have some error");
+      print(err.toString() +
+          " 👉👉 you have some error in home page while generating communities");
     }
   }
 
@@ -99,14 +101,43 @@ class _HomePageState extends State<HomePage> {
                     cards: cardFunc(context, newsarr),
                     size: Size(
                         queryData.size.width - 8, queryData.size.height - 230),
-                    onForward: (index, si) {
+                    onForward: (index, si) async {
                       if (si.direction == SwipDirection.Right) {
                         //Swipe functionality
+                        // try {
+                        Response responseArticles = await Dio().get(
+                            'https://insync-backend-2022.herokuapp.com/article/fetchAll');
+                        // print("👇👇👇");
+                        // print(responseArticles.data.toString());
+                        // } catch (e) {
+                        //   print(e.toString() +
+                        //       "👉👉👉you have an err while getting the articles");
+                        // }
+
+                        try {
+                          Response response = await Dio().post(
+                            "https://insync-backend-2022.herokuapp.com/article/new",
+                            data: {
+                              "author": "Who cares",
+                              "title": newsarr[index - 1].headline,
+                              "desc": newsarr[index - 1].desc,
+                              "article_url": newsarr[index - 1].imgURL,
+                              "img_url": newsarr[index - 1].imgURL,
+                              "publishedAt": DateTime.now().toUtc().toString(),
+                              "content": newsarr[index - 1].desc
+                            },
+                          );
+                        } catch (err) {
+                          print(err.toString() + " 👉👉 you have some error while creating a new article");
+                        }
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) {
                               return ArticlePage(
                                 headline: newsarr[index - 1].headline,
+                                articleID: responseArticles.data["articles"]
+                                        [index - 1]["_id"]
+                                    .toString(),
                                 imgURL: newsarr[index - 1].imgURL,
                                 news: newsarr[index - 1].desc,
                                 interestTags: newsarr[index - 1].interestTags,
@@ -153,6 +184,7 @@ List<Widget> cardFunc(BuildContext context, List<News> array) {
     array.length,
     (index) => NewsCard(
       headline: array[index].headline,
+      articleID: array[index].articleID,
       news: array[index].desc,
       imgURL: array[index].imgURL,
       likes: Random().nextInt(100),
