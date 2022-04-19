@@ -15,18 +15,7 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
-    getHttp();
-  }
-
-  void getHttp() async {
-    try {
-      var response =
-          await Dio().get('https://insync-backend-2022.herokuapp.com/');
-      print("👇👇👇");
-      print(response.data.toString());
-    } catch (e) {
-      print(e);
-    }
+    // getArticles();
   }
 
   @override
