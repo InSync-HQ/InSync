@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
   void initializeNewsFeed() async {
     try {
       Response response = await Dio().get(
-          "https://insync-backend-2022.herokuapp.com/news/newsapi/search?q=ukraine");
+          "https://insync-backend-2022.herokuapp.com/news/newsapi/search?q=sports");
       setState(() {
         newsarr = [];
         newsarr = List.generate(
