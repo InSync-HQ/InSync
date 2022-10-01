@@ -8,7 +8,6 @@
 - [Introduction](#introduction)
 - [Architecture](#architecture)
 - [Technology Stack](#tech_stack)
-- [Project Requirements](#requirements)
 - [Usage](#usage)
 - [Ideology](#ideology)
 - [Contributors](#contributors)
@@ -21,17 +20,45 @@
 ## 🐱‍👤 Architecture
 <a name="tech_stack"></a>
 
-## 🐱‍👤 Technology Stack
-<a name="requirements"></a>
+## 💻📱 Technology Stack
+<a name="tech_stack"></a>
 
-## 🐱‍👤 Project Requirements
+- Flutter
+  - Dart
+- Express.JS
+  - Typecript
+  - MongoDB
+- Heroku
+- Postman
+
+## 👷‍♂️ Setup
 <a name="usage"></a>
 
-## 🐱‍👤 Usage
+```sh
+flutter pub get
+```
+
+## 👷‍♂️ Usage
+
+```sh
+flutter run
+```
+
+## ✨ Format code
+
+```sh
+flutter format .
+```
+
+## 🧪 Test
+
+```sh
+flutter analyze .
+flutter test
+```
 <a name="ideology"></a>
-
 ## 🐱‍👤 Ideology
-<a name="contributors"></a>
 
+<a name="contributors"></a>
 ## 🐱‍👤 Contributors
 
