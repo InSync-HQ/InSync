@@ -17,7 +17,9 @@ import 'dart:async';
 import 'package:stacked_themes/stacked_themes.dart';
 
 Future main() async {
+  // necessary for get storage works like shared prefs
   await GetStorage.init();
+  // necessary for theme builder
   await ThemeManager.initialise();
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
