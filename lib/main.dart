@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:insync/utils/constants.dart';
 import 'package:flutter/services.dart';
 import 'package:insync/view/app_structure.dart';
@@ -15,6 +17,7 @@ import 'dart:async';
 import 'package:stacked_themes/stacked_themes.dart';
 
 Future main() async {
+  await GetStorage.init();
   await ThemeManager.initialise();
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
@@ -47,7 +50,7 @@ class _MyAppState extends State<MyApp> {
       darkTheme: darktheme,
       // themes: getThemes(),
       builder: (context, lightTheme, darkTheme, themeMode) {
-        return MaterialApp(
+        return GetMaterialApp(
           // routes
           routes: {
             '/authorization': (context) => const Authorization(),
@@ -64,8 +67,8 @@ class _MyAppState extends State<MyApp> {
           },
           title: 'InSync',
           theme: lightTheme,
-          darkTheme: darkTheme,
-          themeMode: themeMode,
+          // darkTheme: darkTheme,
+          // themeMode: themeMode,
           home: const InSync(),
           debugShowCheckedModeBanner: false,
           // themeMode: Provider.of<ThemeNotifier>(context).currentTheme,
