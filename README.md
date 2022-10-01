@@ -1,16 +1,37 @@
-# insync
+<p align="center">
+<img src="./assets/banner_image.png" alt="Project logo"></a>
+</p>
 
-A new Flutter project.
+# InSync
 
-## Getting Started
+## 📝 Table of Contents
+- [Introduction](#introduction)
+- [Architecture](#architecture)
+- [Technology Stack](#tech_stack)
+- [Project Requirements](#requirements)
+- [Usage](#usage)
+- [Ideology](#ideology)
+- [Contributors](#contributors)
 
-This project is a starting point for a Flutter application.
+<a name="introduction"></a>
 
-A few resources to get you started if this is your first Flutter project:
+## 🐱‍👤 Introduction
+<a name="architecture"></a>
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## 🐱‍👤 Architecture
+<a name="tech_stack"></a>
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🐱‍👤 Technology Stack
+<a name="requirements"></a>
+
+## 🐱‍👤 Project Requirements
+<a name="usage"></a>
+
+## 🐱‍👤 Usage
+<a name="ideology"></a>
+
+## 🐱‍👤 Ideology
+<a name="contributors"></a>
+
+## 🐱‍👤 Contributors
+
