@@ -16,6 +16,18 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "hayat-tamboli",
+      "name": "Hayat Tamboli",
+      "avatar_url": "https://avatars.githubusercontent.com/u/55529269?v=4",
+      "profile": "https://github.com/hayat-tamboli",
+      "contributions": [
+        "design",
+        "code",
+        "maintenance",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,

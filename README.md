@@ -3,7 +3,7 @@
 </p>
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # InSync
@@ -78,6 +78,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tbody>
     <tr>
       <td align="center"><a href="https://github.com/Manas1820"><img src="https://avatars.githubusercontent.com/u/53006261?v=4?s=100" width="100px;" alt="Manas Gupta"/><br /><sub><b>Manas Gupta</b></sub></a><br /><a href="https://github.com/InSync-HQ/InSync/issues?q=author%3AManas1820" title="Bug reports">🐛</a> <a href="https://github.com/InSync-HQ/InSync/commits?author=Manas1820" title="Code">💻</a> <a href="https://github.com/InSync-HQ/InSync/commits?author=Manas1820" title="Documentation">📖</a></td>
+      <td align="center"><a href="https://github.com/hayat-tamboli"><img src="https://avatars.githubusercontent.com/u/55529269?v=4?s=100" width="100px;" alt="Hayat Tamboli"/><br /><sub><b>Hayat Tamboli</b></sub></a><br /><a href="#design-hayat-tamboli" title="Design">🎨</a> <a href="https://github.com/InSync-HQ/InSync/commits?author=hayat-tamboli" title="Code">💻</a> <a href="#maintenance-hayat-tamboli" title="Maintenance">🚧</a> <a href="https://github.com/InSync-HQ/InSync/commits?author=hayat-tamboli" title="Documentation">📖</a></td>
     </tr>
   </tbody>
   <tfoot>
