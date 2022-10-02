@@ -46,6 +46,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "WaniAthar",
+      "name": "Athar Wani",
+      "avatar_url": "https://avatars.githubusercontent.com/u/83573286?v=4",
+      "profile": "http://www.waniathar.github.io",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

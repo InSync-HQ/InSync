@@ -3,7 +3,7 @@
 </p>
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # InSync
@@ -86,6 +86,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center"><a href="https://github.com/hayat-tamboli"><img src="https://avatars.githubusercontent.com/u/55529269?v=4?s=100" width="100px;" alt="Hayat Tamboli"/><br /><sub><b>Hayat Tamboli</b></sub></a><br /><a href="#design-hayat-tamboli" title="Design">🎨</a> <a href="https://github.com/InSync-HQ/InSync/commits?author=hayat-tamboli" title="Code">💻</a> <a href="#maintenance-hayat-tamboli" title="Maintenance">🚧</a> <a href="https://github.com/InSync-HQ/InSync/commits?author=hayat-tamboli" title="Documentation">📖</a></td>
       <td align="center"><a href="https://github.com/gitgudGR7"><img src="https://avatars.githubusercontent.com/u/62803645?v=4?s=100" width="100px;" alt="N.Raja Vara Siddi Varma"/><br /><sub><b>N.Raja Vara Siddi Varma</b></sub></a><br /><a href="https://github.com/InSync-HQ/InSync/commits?author=gitgudGR7" title="Code">💻</a></td>
       <td align="center"><a href="https://github.com/keerthi-rajan-s"><img src="https://avatars.githubusercontent.com/u/64079181?v=4?s=100" width="100px;" alt="Keerthi Rajan"/><br /><sub><b>Keerthi Rajan</b></sub></a><br /><a href="https://github.com/InSync-HQ/InSync/commits?author=keerthi-rajan-s" title="Code">💻</a></td>
+      <td align="center"><a href="http://www.waniathar.github.io"><img src="https://avatars.githubusercontent.com/u/83573286?v=4?s=100" width="100px;" alt="Athar Wani"/><br /><sub><b>Athar Wani</b></sub></a><br /><a href="https://github.com/InSync-HQ/InSync/commits?author=WaniAthar" title="Code">💻</a></td>
     </tr>
   </tbody>
   <tfoot>
