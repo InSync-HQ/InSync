@@ -32,12 +32,14 @@ class _HomePageState extends State<HomePage> {
           "https://insync-backend-2022.herokuapp.com/news/newsapi/search?q=sports");
       setState(() {
         newsarr = [];
+        var list_of_news = response.data["articles"];
         newsarr = List.generate(
-          response.data["articles"].length,
+          20,
+          // list_of_news.length,
           (index) => News(
-            headline: response.data["articles"][index]["title"],
-            desc: response.data["articles"][index]["content"],
-            imgURL: response.data["articles"][index]["urlToImage"],
+            headline: list_of_news[index]["title"],
+            desc: list_of_news[index]["content"],
+            imgURL: list_of_news[index]["urlToImage"],
             // articleID: response.data["articles"][index]["_id"],
           ),
         );
@@ -128,7 +130,8 @@ class _HomePageState extends State<HomePage> {
                             },
                           );
                         } catch (err) {
-                          print(err.toString() + " 👉👉 you have some error while creating a new article");
+                          print(err.toString() +
+                              " 👉👉 you have some error while creating a new article");
                         }
                         Navigator.of(context).push(
                           MaterialPageRoute(

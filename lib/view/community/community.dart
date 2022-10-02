@@ -36,15 +36,20 @@ class _CommunityState extends State<Community> {
       prefs = await SharedPreferences.getInstance();
       print(prefs.getString("jwt"));
       Response response = await Dio().get(
-          "https://insync-backend-2022.herokuapp.com/community/fetchAll",
-          options: Options(headers: {"Authorization": prefs.getString("jwt")}));
+        "https://insync-backend-2022.herokuapp.com/community/fetchAll",
+        options: Options(
+          headers: {
+            "Authorization": prefs.getString("jwt"),
+          },
+        ),
+      );
       print("🍩🍩🍩");
       print(response.data.toString());
       setState(() {
         communitiesarr = response.data["communties"];
       });
     } catch (err) {
-      print(err.toString() + " 👉👉 you have some error");
+      print(err.toString() + " 👉👉 you have some error in the community page");
     }
   }
 

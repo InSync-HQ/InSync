@@ -103,7 +103,7 @@ class _LoginOverlayState extends State<LoginOverlay> {
                     }
                   } catch (err) {
                     // ignore: avoid_print
-                    print(err.toString() + " 👉👉 you have some error");
+                    print(err.toString() + " 👉👉 you have some error in the login overlay");
                   }
                 },
               ),
