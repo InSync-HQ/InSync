@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:insync/view/auth/authorization.dart';
 import 'package:insync/widgets/button.dart';
 import 'package:insync/widgets/input_field.dart';
 
@@ -10,6 +12,7 @@ class ForgotPage extends StatefulWidget {
 }
 
 class _ForgotPageState extends State<ForgotPage> {
+  final emailCtr = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,15 +67,25 @@ class _ForgotPageState extends State<ForgotPage> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    const InputField(
+                    InputField(
                       label: "Email",
                       placeholder: "someone@example.com",
                       keyboard: TextInputType.emailAddress,
+                      controller: emailCtr,
                     ),
                     const SizedBox(height: 10),
                     PrimaryButton(
                       buttonTitle: "Email password reset link",
-                      onPressed: () {},
+                      onPressed: () {
+                        String email = emailCtr.text;
+                        Get.defaultDialog(
+                          title: "Email sent 🎉",
+                          middleText:
+                              "please check your email ($email) for the reset link",
+                          textConfirm: "OK",
+                          onConfirm: () => Get.to(()=> const Authorization()),
+                        );
+                      },
                     ),
                   ],
                 ),
