@@ -4,8 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:insync/utils/constants.dart';
-import 'package:insync/view/profile/darkmode_overlay.dart';
-import 'package:stacked_themes/stacked_themes.dart';
+// import 'package:insync/view/profile/darkmode_overlay.dart';
+// import 'package:stacked_themes/stacked_themes.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -73,37 +73,37 @@ class _ProfileState extends State<Profile> {
               Navigator.of(context).pushNamed("/changeinterests");
             },
           ),
-          ListTile(
-            horizontalTitleGap: 0,
-            leading: Icon(
-              FeatherIcons.moon,
-              color: Theme.of(context).listTileTheme.iconColor,
-              size: 24,
-            ),
-            title: const Text(
-              "Theme",
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
-            ),
-            subtitle: getThemeManager(context).isDarkMode
-                ? const Text("Dark mode")
-                : const Text("Light mode"),
-            trailing: const Icon(FeatherIcons.chevronRight),
-            onTap: () {
-              showModalBottomSheet<void>(
-                context: context,
-                isScrollControlled: true,
-                backgroundColor: Colors.transparent,
-                builder: (BuildContext context) {
-                  return const DarkModeOverlay();
-                },
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(24),
-                      topRight: Radius.circular(24)),
-                ),
-              );
-            },
-          ),
+          // ListTile(
+          //   horizontalTitleGap: 0,
+          //   leading: Icon(
+          //     FeatherIcons.moon,
+          //     color: Theme.of(context).listTileTheme.iconColor,
+          //     size: 24,
+          //   ),
+          //   title: const Text(
+          //     "Theme",
+          //     style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+          //   ),
+          //   subtitle: getThemeManager(context).isDarkMode
+          //       ? const Text("Dark mode")
+          //       : const Text("Light mode"),
+          //   trailing: const Icon(FeatherIcons.chevronRight),
+          //   onTap: () {
+          //     showModalBottomSheet<void>(
+          //       context: context,
+          //       isScrollControlled: true,
+          //       backgroundColor: Colors.transparent,
+          //       builder: (BuildContext context) {
+          //         return const DarkModeOverlay();
+          //       },
+          //       shape: const RoundedRectangleBorder(
+          //         borderRadius: BorderRadius.only(
+          //             topLeft: Radius.circular(24),
+          //             topRight: Radius.circular(24)),
+          //       ),
+          //     );
+          //   },
+          // ),
           ProfileTile(
             title: "About us",
             leadIcon: FeatherIcons.info,

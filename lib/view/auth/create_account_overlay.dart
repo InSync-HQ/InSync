@@ -100,7 +100,7 @@ class _CreateAccountOverlayState extends State<CreateAccountOverlay> {
                   // print(data.toString());
                   // Constants.updateUserToken(response.data.tokens.token);
                   // Create storage
-                  final storage = new FlutterSecureStorage();
+                  const storage = FlutterSecureStorage();
 
                   // Write value
                   await storage.write(

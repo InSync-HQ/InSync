@@ -14,70 +14,14 @@ import 'package:insync/view/profile/change_intrests.dart';
 import 'package:insync/view/profile/edit_profile.dart';
 import 'package:insync/view/splash.dart';
 import 'dart:async';
-import 'package:stacked_themes/stacked_themes.dart';
 
-Future main() async {
-  // necessary for get storage works like shared prefs
+main() async {
+  // necessary for get storage -> works like shared prefs
   await GetStorage.init();
-  // necessary for theme builder
-  await ThemeManager.initialise();
-  // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  // to disable app rotation
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-  runApp(const MyApp());
-}
-
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  int? theme;
-  ThemeMode? thememode;
-
-  @override
-  void initState() {
-    // initialization();
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ThemeBuilder(
-      defaultThemeMode: ThemeMode.light,
-      lightTheme: lighttheme,
-      darkTheme: darktheme,
-      // themes: getThemes(),
-      builder: (context, lightTheme, darkTheme, themeMode) {
-        return GetMaterialApp(
-          // routes
-          routes: {
-            '/authorization': (context) => const Authorization(),
-            '/mainapp': (context) => const MainApp(),
-            '/editprofile': (context) => const EditProfile(),
-            '/aboutus': (context) => const AboutUs(),
-            '/discover': (context) => const DiscoverCommunity(),
-            '/interests': (BuildContext context) => const Addinterests(),
-            '/changeinterests': (BuildContext context) =>
-                const ChangeInterests(),
-            '/onboarding/1': (BuildContext context) => const Onboardingpage1(),
-            '/onboarding/2': (BuildContext context) => const Onboardingpage2(),
-            '/onboarding/3': (BuildContext context) => const Onboardingpage3(),
-          },
-          title: 'InSync',
-          theme: lightTheme,
-          // darkTheme: darkTheme,
-          // themeMode: themeMode,
-          home: const InSync(),
-          debugShowCheckedModeBanner: false,
-          // themeMode: Provider.of<ThemeNotifier>(context).currentTheme,
-        );
-      },
-    );
-  }
+  runApp(const InSync());
 }
 
 class InSync extends StatefulWidget {
@@ -88,38 +32,63 @@ class InSync extends StatefulWidget {
 }
 
 class _InSyncState extends State<InSync> {
-  startTimeout() {
-    return Timer(const Duration(milliseconds: 2200), handleTimeout);
+  @override
+  void initState() {
+    super.initState();
   }
 
-  void handleTimeout() {
-    changeScreen();
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
+      // routes
+      routes: {
+        '/authorization': (context) => const Authorization(),
+        '/mainapp': (context) => const MainApp(),
+        '/editprofile': (context) => const EditProfile(),
+        '/aboutus': (context) => const AboutUs(),
+        '/discover': (context) => const DiscoverCommunity(),
+        '/interests': (BuildContext context) => const Addinterests(),
+        '/changeinterests': (BuildContext context) => const ChangeInterests(),
+        '/onboarding/1': (BuildContext context) => const Onboardingpage1(),
+        '/onboarding/2': (BuildContext context) => const Onboardingpage2(),
+        '/onboarding/3': (BuildContext context) => const Onboardingpage3(),
+      },
+      title: 'InSync',
+      theme: getThemes()[0],
+      home: const SplashScreen(),
+      debugShowCheckedModeBanner: false,
+    );
   }
+}
 
-  changeScreen() async {
-    bool? auth = await Constants.retrieveAuthPref();
-    if (auth == true) {
-      Navigator.pushNamed(context, '/mainapp');
-    } else {
-      Navigator.pushNamed(context, '/authorization');
-      // Navigator.of(context).push(
-      //   MaterialPageRoute(builder: (context) => const Onboarding()),
-      // );
-    }
-  }
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
 
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     startTimeout();
     super.initState();
-    initialization();
+    setState(() {});
   }
 
-  void initialization() async {
-    setState(() {});
-    // FlutterNativeSplash.remove();
-    Constants.themeSystemPref();
-    startTimeout();
+  startTimeout() {
+    return Timer(const Duration(milliseconds: 2200), changeScreen);
+  }
+
+  changeScreen() async {
+    // bool? auth = await Constants.retrieveAuthPref();
+    final auth = GetStorage();
+    bool? authval = auth.read('auth');
+    if (authval == true) {
+      Get.to(() => const MainApp());
+    } else {
+      Get.to(() => const Authorization());
+    }
   }
 
   @override

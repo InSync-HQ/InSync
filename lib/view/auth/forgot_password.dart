@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:insync/view/auth/authorization.dart';
 import 'package:insync/widgets/button.dart';
 import 'package:insync/widgets/input_field.dart';
 
@@ -10,10 +12,13 @@ class ForgotPage extends StatefulWidget {
 }
 
 class _ForgotPageState extends State<ForgotPage> {
+  final emailCtr = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.transparent,),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       body: ListView(
         children: [
           Column(
@@ -41,21 +46,18 @@ class _ForgotPageState extends State<ForgotPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Container(
-                      padding: const EdgeInsets.only(right: 143),
-                      child: const Text(
-                        "Forgot your Password?",
-                        style: TextStyle(
-                            fontSize: 40,
-                            fontWeight: FontWeight.w700,
-                            fontFamily: "fonts/GeneralSans-Bold.otf"),
+                    const Text(
+                      "Forgot your Password?",
+                      style: TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                     const SizedBox(height: 10),
                     Container(
                       padding: const EdgeInsets.only(right: 30),
                       child: const Text(
-                        "No problem. Just let us know your\nemail address and we'll email you a\npassword reset link that will allow you to reset your passoword.",
+                        "No problem. Just let us know your email address and we'll email you a password reset link that will allow you to reset your passoword.",
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontSize: 20,
@@ -65,15 +67,25 @@ class _ForgotPageState extends State<ForgotPage> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    const InputField(
+                    InputField(
                       label: "Email",
                       placeholder: "someone@example.com",
                       keyboard: TextInputType.emailAddress,
+                      controller: emailCtr,
                     ),
                     const SizedBox(height: 10),
                     PrimaryButton(
                       buttonTitle: "Email password reset link",
-                      onPressed: () {},
+                      onPressed: () {
+                        String email = emailCtr.text;
+                        Get.defaultDialog(
+                          title: "Email sent 🎉",
+                          middleText:
+                              "please check your email ($email) for the reset link",
+                          textConfirm: "OK",
+                          onConfirm: () => Get.to(()=> const Authorization()),
+                        );
+                      },
                     ),
                   ],
                 ),

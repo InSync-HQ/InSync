@@ -19,9 +19,14 @@
 <a name="introduction"></a>
 
 ## 🐱‍👤 Introduction
+
+News has become quite vague, flashy and not to the point, newsreaders and general users want news in a very crisp and readable format but also don't want to lose the heat and emotions coming from the crowd so that they understand the situation from the ground.
+
+We decided to make a Mobile application to solve this problem
+
 <a name="architecture"></a>
 
-## 🐱‍👤 Architecture
+## 🏦 Architecture
 <a name="tech_stack"></a>
 
 ## 💻📱 Technology Stack
@@ -35,36 +40,36 @@
 - Heroku
 - Postman
 
-## 👷‍♂️ Setup
+### 👷‍♂️ Setup
 <a name="usage"></a>
 
 ```sh
 flutter pub get
 ```
 
-## 👷‍♂️ Usage
+### 👷‍♂️ Usage
 
 ```sh
 flutter run
 ```
 
-## ✨ Format code
+### ✨ Format code
 
 ```sh
 flutter format .
 ```
 
-## 🧪 Test
+### 🧪 Test
 
 ```sh
 flutter analyze .
 flutter test
 ```
 <a name="ideology"></a>
-## 🐱‍👤 Ideology
+## 💡 Ideology
 
 <a name="contributors"></a>
-## 🐱‍👤 Contributors
+## 👥 Contributors
 
 
 ## Contributors ✨

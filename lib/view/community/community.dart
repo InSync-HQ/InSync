@@ -5,7 +5,6 @@ import 'dart:math';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:insync/utils/constants.dart';
 import 'package:insync/view/community/create_community_overlay.dart';
 import 'package:insync/widgets/button.dart';
 import 'package:insync/widgets/community_chat_tile.dart';
@@ -25,7 +24,6 @@ class _CommunityState extends State<Community> {
   List communitiesarr = [];
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     initalizeCommunities();
   }
@@ -36,15 +34,20 @@ class _CommunityState extends State<Community> {
       prefs = await SharedPreferences.getInstance();
       print(prefs.getString("jwt"));
       Response response = await Dio().get(
-          "https://insync-backend-2022.herokuapp.com/community/fetchAll",
-          options: Options(headers: {"Authorization": prefs.getString("jwt")}));
+        "https://insync-backend-2022.herokuapp.com/community/fetchAll",
+        options: Options(
+          headers: {
+            "Authorization": prefs.getString("jwt"),
+          },
+        ),
+      );
       print("🍩🍩🍩");
       print(response.data.toString());
       setState(() {
         communitiesarr = response.data["communties"];
       });
     } catch (err) {
-      print(err.toString() + " 👉👉 you have some error");
+      print(err.toString() + " 👉👉 you have some error in the community page");
     }
   }
 

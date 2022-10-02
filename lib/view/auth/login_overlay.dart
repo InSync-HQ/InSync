@@ -1,7 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get/get.dart' hide Response;
+import 'package:get_storage/get_storage.dart';
 import 'package:insync/utils/constants.dart';
+import 'package:insync/view/app_structure.dart';
 import 'package:insync/view/auth/create_account_overlay.dart';
 import 'package:insync/widgets/button.dart';
 import 'package:insync/widgets/dividing_or.dart';
@@ -63,43 +66,41 @@ class _LoginOverlayState extends State<LoginOverlay> {
                 ),
               ),
               const SizedBox(height: 32),
-              Stack(
+              Column(
                 children: [
-                  Column(
+                  InputField(
+                    label: "E-mail",
+                    placeholder: "someone@example.com",
+                    keyboard: TextInputType.emailAddress,
+                    controller: emailctr,
+                  ),
+                  Stack(
+                    alignment: AlignmentDirectional.topEnd,
                     children: [
-                      InputField(
-                        label: "E-mail",
-                        placeholder: "someone@example.com",
-                        keyboard: TextInputType.emailAddress,
-                        controller: emailctr,
-                      ),
                       InputField(
                         label: "Password",
                         placeholder: "•••••••••••••",
                         password: true,
                         controller: passwordctr,
                       ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.to(() => const ForgotPage());
+                          },
+                          child: Text(
+                            "Forgot password?",
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 102, left: 235),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const ForgotPage(),
-                          ),
-                        );
-                      },
-                      child: Text("Forgot password?",
-                          style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500,
-                          )),
-                    ),
-                  )
                 ],
               ),
               const SizedBox(height: 8),
@@ -114,24 +115,26 @@ class _LoginOverlayState extends State<LoginOverlay> {
                           'provider': 'local',
                           'pwd': passwordctr.text
                         });
+                    debugPrint("🚨🚨");
+                    debugPrint(response.statusCode.toString());
                     if (response.statusCode == 200) {
                       // Create storage
-                      final storage = new FlutterSecureStorage();
+                      const storage = FlutterSecureStorage();
 
                       // Write value
                       await storage.write(
                           key: 'jwt', value: response.data["tokens"]["token"]);
                       final myJwt = await storage.read(key: "jwt");
-                      print("🍩🍩");
-                      print(myJwt);
+                      debugPrint("🍩🍩" + myJwt.toString());
                       // print(response.data["tokens"]["token"]);
                       await Constants.loginPref(myJwt!);
                       Constants.retrieveAuthPref();
-                      Navigator.pushNamed(context, '/mainapp');
+                      Get.to(() => const MainApp());
                     }
                   } catch (err) {
                     // ignore: avoid_print
-                    print(err.toString() + " 👉👉 you have some error");
+                    print(err.toString() +
+                        " 👉👉 you have some error in the login overlay");
                   }
                 },
               ),
@@ -140,7 +143,9 @@ class _LoginOverlayState extends State<LoginOverlay> {
               const SizedBox(height: 8),
               PrimaryButton(
                 buttonTitle: "Log in with google",
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(() => const MainApp());
+                },
                 imageLeft: const Image(
                   image: AssetImage('assets/google.png'),
                   width: 26,

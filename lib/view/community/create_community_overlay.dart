@@ -251,7 +251,7 @@ class _CreateCommunityOverlayState extends State<CreateCommunityOverlay> {
                     );
                     Navigator.of(context).pop();
                   } catch (err) {
-                    print(err.toString() + " 👉👉 you have some error");
+                    debugPrint(err.toString() + " 👉👉 you have some error while creating community");
                   }
                 },
               ),
