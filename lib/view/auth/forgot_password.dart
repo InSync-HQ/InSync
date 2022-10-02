@@ -13,7 +13,9 @@ class _ForgotPageState extends State<ForgotPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.transparent,),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       body: ListView(
         children: [
           Column(
@@ -41,21 +43,18 @@ class _ForgotPageState extends State<ForgotPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Container(
-                      padding: const EdgeInsets.only(right: 143),
-                      child: const Text(
-                        "Forgot your Password?",
-                        style: TextStyle(
-                            fontSize: 40,
-                            fontWeight: FontWeight.w700,
-                            fontFamily: "fonts/GeneralSans-Bold.otf"),
+                    const Text(
+                      "Forgot your Password?",
+                      style: TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                     const SizedBox(height: 10),
                     Container(
                       padding: const EdgeInsets.only(right: 30),
                       child: const Text(
-                        "No problem. Just let us know your\nemail address and we'll email you a\npassword reset link that will allow you to reset your passoword.",
+                        "No problem. Just let us know your email address and we'll email you a password reset link that will allow you to reset your passoword.",
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontSize: 20,
