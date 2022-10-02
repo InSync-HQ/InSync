@@ -5,7 +5,6 @@ import 'dart:math';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:insync/utils/constants.dart';
 import 'package:insync/view/community/create_community_overlay.dart';
 import 'package:insync/widgets/button.dart';
 import 'package:insync/widgets/community_chat_tile.dart';
@@ -25,7 +24,6 @@ class _CommunityState extends State<Community> {
   List communitiesarr = [];
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     initalizeCommunities();
   }

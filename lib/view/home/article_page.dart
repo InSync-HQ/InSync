@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:insync/utils/classes.dart';
 import 'package:insync/widgets/auto_generate_interest_tags.dart';
-import 'package:insync/widgets/input_field.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ArticlePage extends StatefulWidget {
@@ -254,7 +253,7 @@ class CommentTile extends StatelessWidget {
               Icons.thumb_up_outlined,
               size: 18,
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Text(
               likes.toString(),
               style: const TextStyle(fontWeight: FontWeight.bold),

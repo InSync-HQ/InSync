@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:insync/widgets/button.dart';
-import 'package:insync/widgets/interest_tile.dart';
 import 'package:insync/view/onboarding/selectinterest.dart';
 
 class ChangeInterests extends StatefulWidget {

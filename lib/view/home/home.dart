@@ -32,14 +32,14 @@ class _HomePageState extends State<HomePage> {
           "https://insync-backend-2022.herokuapp.com/news/newsapi/search?q=sports");
       setState(() {
         newsarr = [];
-        var list_of_news = response.data["articles"];
+        var listOfNews = response.data["articles"];
         newsarr = List.generate(
           20,
           // list_of_news.length,
           (index) => News(
-            headline: list_of_news[index]["title"],
-            desc: list_of_news[index]["content"],
-            imgURL: list_of_news[index]["urlToImage"],
+            headline: listOfNews[index]["title"],
+            desc: listOfNews[index]["content"],
+            imgURL: listOfNews[index]["urlToImage"],
             // articleID: response.data["articles"][index]["_id"],
           ),
         );
