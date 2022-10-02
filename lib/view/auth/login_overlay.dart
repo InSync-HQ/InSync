@@ -66,43 +66,41 @@ class _LoginOverlayState extends State<LoginOverlay> {
                 ),
               ),
               const SizedBox(height: 32),
-              Stack(
+              Column(
                 children: [
-                  Column(
+                  InputField(
+                    label: "E-mail",
+                    placeholder: "someone@example.com",
+                    keyboard: TextInputType.emailAddress,
+                    controller: emailctr,
+                  ),
+                  Stack(
+                    alignment: AlignmentDirectional.topEnd,
                     children: [
-                      InputField(
-                        label: "E-mail",
-                        placeholder: "someone@example.com",
-                        keyboard: TextInputType.emailAddress,
-                        controller: emailctr,
-                      ),
                       InputField(
                         label: "Password",
                         placeholder: "•••••••••••••",
                         password: true,
                         controller: passwordctr,
                       ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.to(() => const ForgotPage());
+                          },
+                          child: Text(
+                            "Forgot password?",
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 102, left: 235),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const ForgotPage(),
-                          ),
-                        );
-                      },
-                      child: Text("Forgot password?",
-                          style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500,
-                          )),
-                    ),
-                  )
                 ],
               ),
               const SizedBox(height: 8),
@@ -130,7 +128,6 @@ class _LoginOverlayState extends State<LoginOverlay> {
                       debugPrint("🍩🍩" + myJwt.toString());
                       // print(response.data["tokens"]["token"]);
                       await Constants.loginPref(myJwt!);
-                      GetStorage();
                       Constants.retrieveAuthPref();
                       Get.to(() => const MainApp());
                     }

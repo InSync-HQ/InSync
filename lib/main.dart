@@ -14,33 +14,26 @@ import 'package:insync/view/profile/change_intrests.dart';
 import 'package:insync/view/profile/edit_profile.dart';
 import 'package:insync/view/splash.dart';
 import 'dart:async';
-// import 'package:stacked_themes/stacked_themes.dart';
 
 main() async {
-  // necessary for get storage works like shared prefs
+  // necessary for get storage -> works like shared prefs
   await GetStorage.init();
-  // necessary for theme builder
-  // await ThemeManager.initialise();
-  // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  // to disable app rotation
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-  runApp(const MyApp());
+  runApp(const InSync());
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+class InSync extends StatefulWidget {
+  const InSync({Key? key}) : super(key: key);
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<InSync> createState() => _InSyncState();
 }
 
-class _MyAppState extends State<MyApp> {
-  // int? theme;
-  // ThemeMode? thememode;
-
+class _InSyncState extends State<InSync> {
   @override
   void initState() {
-    // initialization();
     super.initState();
   }
 
@@ -62,43 +55,9 @@ class _MyAppState extends State<MyApp> {
       },
       title: 'InSync',
       theme: getThemes()[0],
-      // darkTheme: darkTheme,
-      // themeMode: themeMode,
       home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
-      // themeMode: Provider.of<ThemeNotifier>(context).currentTheme,
     );
-    // return ThemeBuilder(
-    //   defaultThemeMode: ThemeMode.light,
-    //   lightTheme: lighttheme,
-    //   darkTheme: darktheme,
-    //   // themes: getThemes(),
-    //   builder: (context, lightTheme, darkTheme, themeMode) {
-    //     return GetMaterialApp(
-    //       // routes
-    //       routes: {
-    //         '/authorization': (context) => const Authorization(),
-    //         '/mainapp': (context) => const MainApp(),
-    //         '/editprofile': (context) => const EditProfile(),
-    //         '/aboutus': (context) => const AboutUs(),
-    //         '/discover': (context) => const DiscoverCommunity(),
-    //         '/interests': (BuildContext context) => const Addinterests(),
-    //         '/changeinterests': (BuildContext context) =>
-    //             const ChangeInterests(),
-    //         '/onboarding/1': (BuildContext context) => const Onboardingpage1(),
-    //         '/onboarding/2': (BuildContext context) => const Onboardingpage2(),
-    //         '/onboarding/3': (BuildContext context) => const Onboardingpage3(),
-    //       },
-    //       title: 'InSync',
-    //       theme: lightTheme,
-    //       // darkTheme: darkTheme,
-    //       // themeMode: themeMode,
-    //       home: const InSync(),
-    //       debugShowCheckedModeBanner: false,
-    //       // themeMode: Provider.of<ThemeNotifier>(context).currentTheme,
-    //     );
-    //   },
-    // );
   }
 }
 
@@ -110,35 +69,26 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  startTimeout() {
-    return Timer(const Duration(milliseconds: 2200), handleTimeout);
-  }
-
-  void handleTimeout() {
-    changeScreen();
-  }
-
-  changeScreen() async {
-    bool? auth = await Constants.retrieveAuthPref();
-    if (auth == true) {
-      Get.to(() => const MainApp());
-    } else {
-      Get.to(() => const Authorization());
-    }
-  }
-
   @override
   void initState() {
     startTimeout();
     super.initState();
-    initialization();
+    setState(() {});
   }
 
-  void initialization() async {
-    setState(() {});
-    // FlutterNativeSplash.remove();
-    Constants.themeSystemPref();
-    startTimeout();
+  startTimeout() {
+    return Timer(const Duration(milliseconds: 2200), changeScreen);
+  }
+
+  changeScreen() async {
+    // bool? auth = await Constants.retrieveAuthPref();
+    final auth = GetStorage();
+    bool? authval = auth.read('auth');
+    if (authval == true) {
+      Get.to(() => const MainApp());
+    } else {
+      Get.to(() => const Authorization());
+    }
   }
 
   @override
