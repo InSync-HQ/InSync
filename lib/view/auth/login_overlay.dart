@@ -6,6 +6,7 @@ import 'package:insync/view/auth/create_account_overlay.dart';
 import 'package:insync/widgets/button.dart';
 import 'package:insync/widgets/dividing_or.dart';
 import 'package:insync/widgets/input_field.dart';
+import 'forgot_password.dart';
 
 class LoginOverlay extends StatefulWidget {
   const LoginOverlay({
@@ -62,17 +63,44 @@ class _LoginOverlayState extends State<LoginOverlay> {
                 ),
               ),
               const SizedBox(height: 32),
-              InputField(
-                label: "E-mail",
-                placeholder: "someone@example.com",
-                keyboard: TextInputType.emailAddress,
-                controller: emailctr,
-              ),
-              InputField(
-                label: "Password",
-                placeholder: "•••••••••••••",
-                password: true,
-                controller: passwordctr,
+              Stack(
+                children: [
+                  Column(
+                    children: [
+                      InputField(
+                        label: "E-mail",
+                        placeholder: "someone@example.com",
+                        keyboard: TextInputType.emailAddress,
+                        controller: emailctr,
+                      ),
+                      InputField(
+                        label: "Password",
+                        placeholder: "•••••••••••••",
+                        password: true,
+                        controller: passwordctr,
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 102, left: 235),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ForgotPage(),
+                          ),
+                        );
+                      },
+                      child: Text("Forgot password?",
+                          style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                          )),
+                    ),
+                  )
+                ],
               ),
               const SizedBox(height: 8),
               PrimaryButton(
