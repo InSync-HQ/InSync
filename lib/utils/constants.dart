@@ -1,53 +1,46 @@
+import 'package:get_storage/get_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Constants {
   static savePref(String key, value) async {
-    late SharedPreferences prefs;
-    prefs = await SharedPreferences.getInstance();
-    prefs.setBool(key, value);
+    final prefs = GetStorage();
+    prefs.write(key, value);
   }
 
   static loginPref(String jwt) async {
-    late SharedPreferences prefs;
-    prefs = await SharedPreferences.getInstance();
-    prefs.setBool('auth', true);
-    prefs.setString('jwt', jwt);
+    final auth = GetStorage();
+    auth.write('auth', true);
+    auth.write('jwt', jwt);
   }
 
   static logoutPref() async {
-    late SharedPreferences prefs;
-    prefs = await SharedPreferences.getInstance();
-    prefs.setBool('auth', false);
+    final auth = GetStorage();
+    auth.write('auth', false);
   }
 
   static themeSystemPref() async {
-    late SharedPreferences prefs;
-    prefs = await SharedPreferences.getInstance();
-    prefs.setInt('theme', 1);
+    final theme = GetStorage();
+    theme.write('theme', 1);
   }
 
   static themeLightPref() async {
-    late SharedPreferences prefs;
-    prefs = await SharedPreferences.getInstance();
-    prefs.setInt('theme', 2);
+    final theme = GetStorage();
+    theme.write('theme', 2);
   }
 
   static themeDarkPref() async {
-    late SharedPreferences prefs;
-    prefs = await SharedPreferences.getInstance();
-    prefs.setInt('theme', 3);
+    final theme = GetStorage();
+    theme.write('theme', 3);
   }
 
   static Future<bool?> retrieveAuthPref() async {
-    late SharedPreferences prefs;
-    prefs = await SharedPreferences.getInstance();
-    return prefs.getBool('auth');
+    final auth = GetStorage();
+    return auth.read('auth');
   }
 
   static Future<int?> retrievethemePref() async {
-    late SharedPreferences prefs;
-    prefs = await SharedPreferences.getInstance();
-    return prefs.getInt('theme');
+    final theme = GetStorage();
+    return theme.read('theme');
   }
 
   static deletePref(String key) async {
@@ -57,14 +50,12 @@ class Constants {
   }
 
   static retrievePref(String key) async {
-    late SharedPreferences prefs;
-    prefs = await SharedPreferences.getInstance();
+    final prefs = GetStorage();
     prefs.remove(key);
   }
 
   static updateUserToken(String token) async {
-    late SharedPreferences prefs;
-    prefs = await SharedPreferences.getInstance();
-    prefs.setString('token', token);
+    final userToken = GetStorage();
+    userToken.write('token', token);
   }
 }
